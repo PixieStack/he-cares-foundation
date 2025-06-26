@@ -1,0 +1,357 @@
+<div class="start-fundraiser-page">
+  <div class="hero-spacer"></div>
+  <div class="header-hero improved-hero">
+    <div class="hero-content">
+      <span class="badge">FUNDRAISER</span>
+      <h1>Start a <span class="text-accent">Fundraiser or Drive</span></h1>
+      <div class="hero-desc">
+        <strong>Bring hope. Take action. Change lives.</strong>
+        <ul>
+          <li><b>Pad drive, food parcel, or fun run?</b> You can do it!</li>
+          <li><b>No experience?</b> We’ll guide you every step of the way.</li>
+          <li><b>All funds go straight to the Foundation’s account.</b></li>
+        </ul>
+        <span class="microcopy"
+          >Get creative—big or small, every effort counts.</span
+        >
+      </div>
+      <div class="quick-cta">
+        <button class="btn-main" (click)="openForm()">
+          Start My Fundraiser
+        </button>
+      </div>
+      <div class="emergency-note">
+        <i class="fas fa-info-circle"></i>
+        <span
+          >Need help? <strong>Email: fundraising&#64;hecares.org</strong></span
+        >
+      </div>
+    </div>
+    <div class="hero-art creative-hero-art">
+      <div class="hero-art-image-wrap">
+        <!-- New fundraising-related Unsplash image, no badge/button overlay -->
+        <img
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+          alt="Fundraising Event"
+        />
+        <div class="art-overlay"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Form -->
+  <!-- (Form code remains unchanged) -->
+  <div class="modal-overlay" *ngIf="showForm">
+    <div class="modal-form">
+      <button class="close-btn" (click)="closeForm()" aria-label="Close">
+        &times;
+      </button>
+      <h2>Register Your Fundraiser / Drive</h2>
+      <div class="form-step-indicator">
+        <span [class.active]="step === 1">1</span>
+        <span class="line"></span>
+        <span [class.active]="step === 2">2</span>
+      </div>
+      <form [formGroup]="fundraiserForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Step 1: Event Info -->
+        <div *ngIf="step === 1">
+          <fieldset class="form-section">
+            <legend>Your Details</legend>
+            <div class="form-row">
+              <label>
+                Name / Organisation *
+                <input
+                  formControlName="organizerName"
+                  type="text"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('organizerName')?.invalid
+                  "
+                  autocomplete="name"
+                />
+              </label>
+              <label>
+                Contact Number *
+                <input
+                  formControlName="contact"
+                  type="text"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('contact')?.invalid
+                  "
+                  autocomplete="tel"
+                />
+              </label>
+              <label>
+                Email *
+                <input
+                  formControlName="email"
+                  type="email"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('email')?.invalid
+                  "
+                  autocomplete="email"
+                />
+              </label>
+              <label>
+                City/Suburb *
+                <input
+                  formControlName="location"
+                  type="text"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('location')?.invalid
+                  "
+                  autocomplete="address-level2"
+                />
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="form-section">
+            <legend>About Your Fundraiser</legend>
+            <div class="form-row radio-row">
+              <div class="full-width-label">
+                Type of Event/Drive *
+                <div class="radio-group vertical best-radio">
+                  <label
+                    *ngFor="let type of eventTypes"
+                    class="custom-radio-label"
+                  >
+                    <input
+                      type="radio"
+                      formControlName="eventType"
+                      [value]="type"
+                      [checked]="
+                        fundraiserForm.get('eventType')?.value === type
+                      "
+                    />
+                    <span class="custom-radio">
+                      <span class="radio-dot"></span>
+                    </span>
+                    <span class="option-label">{{ type }}</span>
+                  </label>
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="submitted && fundraiserForm.get('eventType')?.invalid"
+                >
+                  Please select an option
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>
+                Fundraiser / Drive Title *
+                <input
+                  formControlName="eventTitle"
+                  type="text"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('eventTitle')?.invalid
+                  "
+                  placeholder="e.g. Pads for Dignity Drive"
+                />
+              </label>
+              <label>
+                Date / Period *
+                <input
+                  formControlName="eventDate"
+                  type="date"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('eventDate')?.invalid
+                  "
+                />
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="full-width-label">
+                Description / Motivation *
+                <textarea
+                  formControlName="eventDesc"
+                  rows="3"
+                  maxlength="400"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('eventDesc')?.invalid
+                  "
+                  placeholder="Describe your idea, motivation, or how you plan to run it (max 400 chars)"
+                ></textarea>
+              </label>
+            </div>
+          </fieldset>
+          <div class="form-actions">
+            <button type="button" class="btn-main" (click)="nextStep()">
+              Next
+            </button>
+          </div>
+        </div>
+        <!-- Step 2: Support/Agreement -->
+        <div *ngIf="step === 2">
+          <fieldset class="form-section">
+            <legend>How Can We Support You?</legend>
+            <div class="form-row checkbox-group-row">
+              <div class="form-label">Select all that apply:</div>
+              <div class="checkboxes-grid best-checkbox">
+                <label
+                  *ngFor="let area of supportAreas"
+                  class="custom-checkbox-label"
+                >
+                  <input
+                    type="checkbox"
+                    [checked]="
+                      fundraiserForm.get('supportNeeded')?.value?.includes(area)
+                    "
+                    (change)="toggleSupportArea(area)"
+                  />
+                  <span class="custom-checkbox">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <span class="option-label">{{ area }}</span>
+                </label>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>
+                Attach event poster or supporting document (optional)
+                <input
+                  type="file"
+                  (change)="onFileChange($event)"
+                  multiple
+                  accept=".pdf,.doc,.jpg,.png"
+                />
+                <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+                  <span *ngFor="let file of uploadedFiles">{{
+                    file.name
+                  }}</span>
+                </div>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset class="form-section">
+            <legend>Agreement</legend>
+            <div class="form-row consent">
+              <label>
+                <input
+                  formControlName="bankingConsent"
+                  type="checkbox"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('bankingConsent')?.invalid
+                  "
+                />
+                I understand that
+                <strong
+                  >all funds must be deposited directly to the Foundation's
+                  official bank account</strong
+                >, and I agree to use only approved branding and submit reports
+                after my drive/event. *
+              </label>
+            </div>
+            <div class="form-row consent">
+              <label>
+                <input
+                  formControlName="consent"
+                  type="checkbox"
+                  [class.invalid]="
+                    submitted && fundraiserForm.get('consent')?.invalid
+                  "
+                />
+                I confirm the above information is correct and agree to abide by
+                the Foundation’s policies. *
+              </label>
+            </div>
+          </fieldset>
+          <div class="form-actions">
+            <button type="button" class="btn-alt" (click)="prevStep()">
+              Back
+            </button>
+            <button
+              type="submit"
+              class="btn-main"
+              [disabled]="fundraiserForm.pending"
+            >
+              Submit Registration
+            </button>
+          </div>
+          <div class="success-msg" *ngIf="successMsg">{{ successMsg }}</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Info Cards Section -->
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-hands-helping"></i></div>
+        <h2>Ideas for Fundraisers & Drives</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Host a pad drive at your school
+            or workplace
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Organize a fun run or sports
+            event
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Collect and donate school
+            supplies or winter clothing
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Run a food parcel collection at
+            your local shop
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Start an online donation
+            campaign
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-university"></i></div>
+        <h2>Foundation Banking Details</h2>
+        <ul>
+          <li><strong>Bank:</strong> YourBank Ltd</li>
+          <li><strong>Account Name:</strong> He Cares Foundation</li>
+          <li><strong>Account Number:</strong> 123456789</li>
+          <li><strong>Branch:</strong> Main Street (Code 000123)</li>
+          <li><strong>Reference:</strong> "Fundraiser-[YourName/Event]"</li>
+        </ul>
+        <span class="small"
+          >*Do not collect or use personal bank accounts for fundraising.</span
+        >
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-users"></i></div>
+        <h2>Our Support</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Custom flyers, posters, and
+            social media graphics
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Foundation speakers or reps for
+            your event
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Guidance on reporting and best
+            practices
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq-section">
+    <h2><i class="fas fa-question-circle"></i> Fundraiser & Drive FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <button class="faq-question" (click)="toggleFAQ(i)">
+          <span>{{ faq.question }}</span>
+          <i
+            [class]="faq.isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          ></i>
+        </button>
+        <div class="faq-answer" *ngIf="faq.isOpen">
+          {{ faq.answer }}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

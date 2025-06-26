@@ -1,0 +1,350 @@
+// ========================================
+// HE CARES FOUNDATION - SCSS VARIABLES
+// ========================================
+
+// ========================================
+// COLOR PALETTE
+// ========================================
+
+// Primary Colors
+$hcf-blue-dark: #1e3a8a !default; // Deep blue - primary brand color
+$hcf-blue-light: #3b82f6 !default; // Lighter blue - secondary
+$hcf-orange: #f97316 !default; // Orange - accent color
+$hcf-gold: #fbbf24 !default; // Gold - highlight color
+
+// Text Colors
+$hcf-text-dark: #1f2937 !default; // Dark grey for headings
+$hcf-text-grey: #6b7280 !default; // Medium grey for body text
+$hcf-grey-text: #6b7280 !default; // Alias for body text (backward compatibility)
+$hcf-text-light: #9ca3af !default; // Light grey for captions
+
+// Background Colors
+$hcf-bg-light: #f8fafc !default; // Very light background
+$hcf-bg-white: #ffffff !default; // Pure white
+$hcf-bg-dark: #111827 !default; // Dark background
+
+// Status Colors
+$hcf-success: #10b981 !default; // Green for success states
+$hcf-warning: #f59e0b !default; // Amber for warnings
+$hcf-error: #ef4444 !default; // Red for errors
+$hcf-info: #3b82f6 !default; // Blue for info
+
+// Neutral Colors
+$white: #ffffff !default;
+$black: #000000 !default;
+$grey-50: #f9fafb !default;
+$grey-100: #f3f4f6 !default;
+$grey-200: #e5e7eb !default;
+$grey-300: #d1d5db !default;
+$grey-400: #9ca3af !default;
+$grey-500: #6b7280 !default;
+$grey-600: #4b5563 !default;
+$grey-700: #374151 !default;
+$grey-800: #1f2937 !default;
+$grey-900: #111827 !default;
+
+// ========================================
+// GRADIENTS
+// ========================================
+
+$hcf-primary-gradient: linear-gradient(
+  135deg,
+  $hcf-blue-dark 0%,
+  $hcf-blue-light 100%
+) !default;
+$hcf-secondary-gradient: linear-gradient(
+  135deg,
+  $hcf-orange 0%,
+  $hcf-gold 100%
+) !default;
+$hcf-hero-gradient: linear-gradient(
+  135deg,
+  rgba($hcf-blue-dark, 0.9) 0%,
+  rgba($hcf-text-dark, 0.8) 50%,
+  rgba($hcf-blue-dark, 0.85) 100%
+) !default;
+
+// ========================================
+// TYPOGRAPHY
+// ========================================
+
+// Font Families
+$font-heading:
+  "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !default;
+$font-body: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !default;
+$font-mono: "Monaco", "Menlo", "Ubuntu Mono", monospace !default;
+
+// Font Sizes
+$font-size-xs: 0.75rem !default; // 12px
+$font-size-sm: 0.875rem !default; // 14px
+$font-size-base: 1rem !default; // 16px
+$font-size-lg: 1.125rem !default; // 18px
+$font-size-xl: 1.25rem !default; // 20px
+$font-size-2xl: 1.5rem !default; // 24px
+$font-size-3xl: 1.875rem !default; // 30px
+$font-size-4xl: 2.25rem !default; // 36px
+$font-size-5xl: 3rem !default; // 48px
+$font-size-6xl: 3.75rem !default; // 60px
+
+// Font Weights
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extrabold: 800 !default;
+$font-weight-black: 900 !default;
+
+// Line Heights
+$line-height-none: 1 !default;
+$line-height-tight: 1.25 !default;
+$line-height-snug: 1.375 !default;
+$line-height-normal: 1.5 !default;
+$line-height-relaxed: 1.625 !default;
+$line-height-loose: 2 !default;
+$line-height-base: $line-height-normal !default;
+
+// Letter Spacing
+$letter-spacing-tighter: -0.05em !default;
+$letter-spacing-tight: -0.025em !default;
+$letter-spacing-normal: 0 !default;
+$letter-spacing-wide: 0.025em !default;
+$letter-spacing-wider: 0.05em !default;
+$letter-spacing-widest: 0.1em !default;
+
+// ========================================
+// SPACING & LAYOUT
+// ========================================
+
+// Base spacing unit
+$spacing-unit: 1rem !default;
+
+// Spacing Scale
+$padding-xs: $spacing-unit * 0.25 !default; // 4px
+$padding-sm: $spacing-unit * 0.5 !default; // 8px
+$padding-md: $spacing-unit * 1 !default; // 16px
+$padding-lg: $spacing-unit * 1.5 !default; // 24px
+$padding-xl: $spacing-unit * 2 !default; // 32px
+$padding-2xl: $spacing-unit * 2.5 !default; // 40px
+$padding-3xl: $spacing-unit * 3 !default; // 48px
+$padding-4xl: $spacing-unit * 4 !default; // 64px
+$padding-5xl: $spacing-unit * 5 !default; // 80px
+
+// Container Max Widths
+$container-sm: 640px !default;
+$container-md: 768px !default;
+$container-lg: 1024px !default;
+$container-xl: 1280px !default;
+$container-2xl: 1536px !default;
+
+// ========================================
+// BORDERS & RADIUS
+// ========================================
+
+// Border Radius
+$border-radius-none: 0 !default;
+$border-radius-sm: 0.25rem !default; // 4px
+$border-radius-md: 0.5rem !default; // 8px
+$border-radius-lg: 0.75rem !default; // 12px
+$border-radius-xl: 1rem !default; // 16px
+$border-radius-2xl: 1.5rem !default; // 24px
+$border-radius-full: 9999px !default;
+
+// Border Widths
+$border-width-0: 0 !default;
+$border-width-1: 1px !default;
+$border-width-2: 2px !default;
+$border-width-4: 4px !default;
+$border-width-8: 8px !default;
+
+// ========================================
+// SHADOWS
+// ========================================
+
+$shadow-sm: 0 1px 2px 0 rgba($black, 0.05) !default;
+$shadow-md:
+  0 4px 6px -1px rgba($black, 0.1),
+  0 2px 4px -1px rgba($black, 0.06) !default;
+$shadow-lg:
+  0 10px 15px -3px rgba($black, 0.1),
+  0 4px 6px -2px rgba($black, 0.05) !default;
+$shadow-xl:
+  0 20px 25px -5px rgba($black, 0.1),
+  0 10px 10px -5px rgba($black, 0.04) !default;
+$shadow-2xl: 0 25px 50px -12px rgba($black, 0.25) !default;
+$shadow-inner: inset 0 2px 4px 0 rgba($black, 0.06) !default;
+$shadow-none: 0 0 #0000 !default;
+
+// Component Specific Shadows
+$card-shadow: $shadow-md !default;
+$button-shadow: $shadow-sm !default;
+$modal-shadow: $shadow-2xl !default;
+
+// ========================================
+// TRANSITIONS & ANIMATIONS
+// ========================================
+
+// Transition Duration
+$transition-speed-fast: 150ms !default;
+$transition-speed-normal: 300ms !default;
+$transition-speed-slow: 500ms !default;
+
+// Transition Timing Functions
+$transition-ease: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-ease-in: cubic-bezier(0.4, 0, 1, 1) !default;
+$transition-ease-out: cubic-bezier(0, 0, 0.2, 1) !default;
+$transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+// ========================================
+// BREAKPOINTS
+// ========================================
+
+$breakpoint-xs: 475px !default;
+$breakpoint-sm: 640px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 1024px !default;
+$breakpoint-xl: 1280px !default;
+$breakpoint-2xl: 1536px !default;
+
+// ========================================
+// BUTTONS
+// ========================================
+
+$button-border-radius: $border-radius-md !default;
+$button-font-weight: $font-weight-semibold !default;
+$button-padding-x: $padding-lg !default;
+$button-padding-y: $padding-sm !default;
+
+// Button Sizes
+$button-sm-padding-x: $padding-md !default;
+$button-sm-padding-y: $padding-xs !default;
+$button-sm-font-size: $font-size-sm !default;
+
+$button-lg-padding-x: $padding-xl !default;
+$button-lg-padding-y: $padding-md !default;
+$button-lg-font-size: $font-size-lg !default;
+
+// ========================================
+// Z-INDEX SCALE
+// ========================================
+
+$z-index-dropdown: 1000 !default;
+$z-index-sticky: 1020 !default;
+$z-index-fixed: 1030 !default;
+$z-index-modal-backdrop: 1040 !default;
+$z-index-modal: 1050 !default;
+$z-index-popover: 1060 !default;
+$z-index-tooltip: 1070 !default;
+
+// ========================================
+// FORM ELEMENTS
+// ========================================
+
+$input-border-radius: $border-radius-md !default;
+$input-border-color: $grey-300 !default;
+$input-border-focus-color: $hcf-blue-dark !default;
+$input-padding-x: $padding-md !default;
+$input-padding-y: $padding-sm !default;
+$input-font-size: $font-size-base !default;
+
+// ========================================
+// COMPONENT SPECIFIC VARIABLES
+// ========================================
+
+// Navigation
+$nav-height: 80px !default;
+$nav-mobile-height: 70px !default;
+
+// Hero Section
+$hero-min-height: 600px !default;
+
+// Cards
+$card-border-radius: $border-radius-lg !default;
+$card-padding: $padding-lg !default;
+
+// Footer
+$footer-bg: $hcf-text-dark !default;
+$footer-text: $grey-300 !default;
+
+// ========================================
+// UTILITY MIXINS
+// ========================================
+
+// Responsive breakpoint mixin
+@mixin responsive($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) {
+      @content;
+    }
+  }
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+  @if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// Button reset mixin
+@mixin button-reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+// Flex center mixin
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Absolute center mixin
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Truncate text mixin
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden mixin (for accessibility)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

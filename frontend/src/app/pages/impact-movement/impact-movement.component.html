@@ -1,0 +1,85 @@
+<section class="impact-movement-section">
+  <!-- Spacer to move hero section down by 4 lines -->
+  <div class="page-spacer"></div>
+
+  <!-- Hero-like Container Matching Join Us Style -->
+  <div class="header-hero">
+    <div class="hero-content">
+      <span class="badge">IMPACT & STORIES</span>
+      <h1>
+        Making a <span class="text-accent">Difference</span> in Johannesburg
+      </h1>
+      <p class="hero-desc">
+        Discover our reach, testimonials, and the communities we serve across
+        Johannesburg.
+      </p>
+    </div>
+    <div class="hero-art">
+      <img
+        src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=700&q=80"
+        alt="Impact in Johannesburg"
+      />
+    </div>
+  </div>
+
+  <!-- Stats Section: 2 columns, 3 cards per line, WITH ICONS -->
+  <div class="stats-container">
+    <div class="stats-grid">
+      <div
+        class="stat-card"
+        *ngFor="let stat of stats"
+        [ngStyle]="{ 'border-color': stat.color }"
+      >
+        <span class="stat-icon" [ngStyle]="{ color: stat.color }"
+          ><i [class]="stat.icon"></i
+        ></span>
+        <span class="stat-value">{{ stat.value }}</span>
+        <span class="stat-label">{{ stat.label }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery Carousel (ABOVE TESTIMONIALS) -->
+  <div class="gallery-header">
+    <span class="section-badge alt">Gallery</span>
+    <h3>Snapshots of Impact</h3>
+    <div class="section-underline alt"></div>
+  </div>
+  <div class="gallery-carousel">
+    <button class="carousel-btn prev" (click)="prevGalleryPage()">‹</button>
+    <div class="gallery-grid">
+      <div class="gallery-item" *ngFor="let item of galleryCurrentPage">
+        <img *ngIf="item.type === 'photo'" [src]="item.src" [alt]="item.alt" />
+      </div>
+    </div>
+    <button class="carousel-btn next" (click)="nextGalleryPage()">›</button>
+  </div>
+
+  <!-- Testimonials Carousel (BELOW GALLERY, 3 per page) -->
+  <div class="stories-header">
+    <span class="section-badge alt">Stories</span>
+    <h3>Real Voices, Real Change</h3>
+    <div class="section-underline alt"></div>
+  </div>
+  <div class="testimonials-carousel">
+    <button class="carousel-btn prev" (click)="prevTestimonialPage()">‹</button>
+    <div class="testimonials-grid">
+      <div
+        class="testimonial-card"
+        *ngFor="let testimonial of testimonialCurrentPage"
+      >
+        <div class="testimonial-photo">
+          <img [src]="testimonial.image" [alt]="testimonial.name" />
+        </div>
+        <div class="testimonial-content">
+          <div class="testimonial-quote">"{{ testimonial.content }}"</div>
+          <div class="testimonial-author">
+            <strong>{{ testimonial.name }}</strong>
+            <span class="role">{{ testimonial.role }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn next" (click)="nextTestimonialPage()">›</button>
+  </div>
+</section>

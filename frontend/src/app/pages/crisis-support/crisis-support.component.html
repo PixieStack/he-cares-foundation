@@ -1,0 +1,348 @@
+<div class="crisis-support-page">
+  <!-- Hero Section styled like Join Movement -->
+  <div class="hero-spacer"></div>
+  <div class="header-hero">
+    <div class="hero-content">
+      <span class="badge">CRISIS HELP</span>
+      <h1>Crisis Support &amp; <span class="text-accent">Referrals</span></h1>
+      <p class="hero-desc">
+        At He Cares Foundation, we connect women and children in crisis with
+        compassionate professionals and essential services. Whether you need
+        urgent help, legal guidance, safe accommodation, or support for your
+        children, our team is here for you.<br /><br />
+        <strong
+          >All our services are confidential, free, and tailored to your
+          needs.</strong
+        >
+      </p>
+      <div class="quick-cta">
+        <button class="btn-main" (click)="openForm('self')">
+          Request Support or Referral
+        </button>
+        <button class="btn-alt" (click)="openForm('professional')">
+          I'm a Social Worker / Lawyer
+        </button>
+      </div>
+      <div class="emergency-note">
+        <i class="fas fa-phone-alt"></i>
+        <span
+          >If you are in immediate danger, call our 24/7 crisis line:
+          <strong>068 126 3127</strong></span
+        >
+      </div>
+    </div>
+    <div class="hero-art">
+      <img
+        src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=700&q=80"
+        alt="Crisis Support"
+      />
+    </div>
+  </div>
+
+  <!-- Information & Features -->
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-block">
+        <h2>What We Offer</h2>
+        <ul class="info-detail-list">
+          <li>
+            <span class="info-title">Social Worker Support</span>
+            <span class="info-desc"
+              >Confidential guidance, trauma support, and ongoing care for women
+              and children in crisis.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Legal Referrals</span>
+            <span class="info-desc"
+              >Connections to trusted lawyers for urgent legal assistance and
+              advice, including protection orders and custody matters.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Child Support</span>
+            <span class="info-desc"
+              >Play therapy, school referrals, and access to child protection
+              services.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Emergency Shelter</span>
+            <span class="info-desc"
+              >Safe accommodation and assistance with transport to secure
+              locations.</span
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h2>How It Works</h2>
+        <ul class="info-detail-list">
+          <li>
+            <span class="info-title">Submit a Request</span>
+            <span class="info-desc"
+              >Tell us your situation and the support you need. Our secure form
+              is quick and easy to complete.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Upload Documents</span>
+            <span class="info-desc"
+              >If needed, upload referral letters or supporting documents to
+              help us assist you faster.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Quick Response</span>
+            <span class="info-desc"
+              >Our team will contact you within 48 hours with the next steps and
+              immediate support options.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Continuous Support</span>
+            <span class="info-desc"
+              >We stay connected and advocate for you, offering ongoing care and
+              follow-up throughout your journey.</span
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h2>Who Can Refer?</h2>
+        <ul class="info-detail-list">
+          <li>
+            <span class="info-title">Individuals (self-referral)</span>
+            <span class="info-desc"
+              >You can reach out directly if you need help for yourself or your
+              children.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Professionals & Advocates</span>
+            <span class="info-desc"
+              >Social workers, legal professionals, or community advocates can
+              refer on behalf of someone in need.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Family or Friends</span>
+            <span class="info-desc"
+              >Loved ones can refer if the person in need has given their
+              consent.</span
+            >
+          </li>
+          <li>
+            <span class="info-title">Our Focus</span>
+            <span class="info-desc"
+              >For women and children facing crisis, abuse, or in need of urgent
+              support.</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-list">
+      <div class="feature-card">
+        <div class="icon social"><i class="fas fa-hands-helping"></i></div>
+        <h3>Social Worker Access</h3>
+        <p>
+          Direct support from experienced social workers, in-person or
+          virtually.
+        </p>
+        <ul>
+          <li>Confidential trauma counselling</li>
+          <li>Safety planning</li>
+          <li>Help navigating social services</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon legal"><i class="fas fa-gavel"></i></div>
+        <h3>Legal Assistance Referrals</h3>
+        <p>
+          We help connect you with lawyers for urgent legal advice and support.
+        </p>
+        <ul>
+          <li>Connection to pro bono and community lawyers</li>
+          <li>Guidance on legal processes</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon child"><i class="fas fa-child"></i></div>
+        <h3>Child-Focused Support</h3>
+        <p>
+          Care for children including play therapy and safe school referrals.
+        </p>
+        <ul>
+          <li>Play therapy</li>
+          <li>Referrals to child protection</li>
+          <li>School and wellbeing support</li>
+        </ul>
+      </div>
+      <div class="feature-card">
+        <div class="icon shelter"><i class="fas fa-home"></i></div>
+        <h3>Emergency Shelter</h3>
+        <p>Immediate placement in safe accommodation and help with travel.</p>
+        <ul>
+          <li>Safe houses & crisis shelters</li>
+          <li>Transport arrangements</li>
+          <li>Follow-up after placement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Form for Referrals & Support -->
+  <div class="modal-overlay" *ngIf="showForm">
+    <div class="modal-form">
+      <div class="modal-header">
+        <h2>
+          {{
+            isReferral ? "Professional Referral" : "Request Support or Referral"
+          }}
+        </h2>
+        <button class="close-btn" (click)="closeForm()" aria-label="Close">
+          &times;
+        </button>
+      </div>
+      <form
+        [formGroup]="supportForm"
+        (ngSubmit)="onSubmit()"
+        [class.submitted]="submitted"
+      >
+        <div *ngIf="isReferral" class="form-group referrer">
+          <label for="referredBy">Your Name &amp; Organisation *</label>
+          <input
+            id="referredBy"
+            type="text"
+            formControlName="referredBy"
+            [required]="isReferral"
+            placeholder="Name & Organisation"
+          />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Person's Name *</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              [class.invalid]="submitted && supportForm.get('name')?.invalid"
+              placeholder="Full Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact Number *</label>
+            <input
+              id="contact"
+              type="text"
+              formControlName="contact"
+              [class.invalid]="submitted && supportForm.get('contact')?.invalid"
+              placeholder="Phone or WhatsApp"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              [class.invalid]="submitted && supportForm.get('email')?.invalid"
+              placeholder="Email address"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label>Support Needed *</label>
+            <ul class="checkboxes-list">
+              <li *ngFor="let option of crisisOptions">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    [value]="option.value"
+                    [checked]="
+                      supportForm
+                        .get('crisisType')
+                        ?.value.includes(option.value)
+                    "
+                    (change)="toggleCrisisType(option.value)"
+                  />
+                  <span>{{ option.label }}</span>
+                </label>
+              </li>
+            </ul>
+            <div
+              class="error-msg"
+              *ngIf="submitted && supportForm.get('crisisType')?.invalid"
+            >
+              Please select at least one option
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="message">Tell us more (optional)</label>
+            <textarea
+              id="message"
+              rows="3"
+              formControlName="message"
+              placeholder="Share any details that can help us assist you better"
+            ></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="files">
+              {{
+                isReferral
+                  ? "Upload Referral Letter or Documents"
+                  : "Upload any supporting documents (optional)"
+              }}
+              <span class="small">(PDF, DOC, JPG, PNG)</span>
+            </label>
+            <input
+              id="files"
+              type="file"
+              (change)="onFileChange($event)"
+              multiple
+              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+            />
+            <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+              <span *ngFor="let f of uploadedFiles">{{ f.name }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-submit" type="submit">Submit Request</button>
+        </div>
+        <div class="success-msg" *ngIf="successMsg">{{ successMsg }}</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <h2>Crisis Support & Referrals FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <button class="faq-question" (click)="faq.isOpen = !faq.isOpen">
+          <span>{{ faq.question }}</span>
+          <i
+            class="fas"
+            [ngClass]="{
+              'fa-chevron-down': !faq.isOpen,
+              'fa-chevron-up': faq.isOpen,
+            }"
+          ></i>
+        </button>
+        <div class="faq-answer" *ngIf="faq.isOpen">
+          {{ faq.answer }}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

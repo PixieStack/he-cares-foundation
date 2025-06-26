@@ -1,0 +1,412 @@
+<div class="community-advocacy-page crisis-support-page">
+  <div class="hero-spacer"></div>
+  <div class="header-hero">
+    <div class="hero-content">
+      <span class="badge">ADVOCACY</span>
+      <h1>Community <span class="text-accent">Advocacy</span></h1>
+      <div class="hero-desc">
+        <strong>Building safer, more just communities—together.</strong>
+        <ul>
+          <li>
+            <b>Men’s leadership training:</b> Become a champion for change and a
+            role model for younger generations.
+          </li>
+          <li>
+            <b>Community workshops & healing forums:</b> Open spaces for honest
+            dialogue, learning, and support.
+          </li>
+          <li>
+            <b>Awareness campaigns & policy influence:</b> Make your voice count
+            for justice and equality.
+          </li>
+          <li>
+            <b>Youth mobilization & mentorship:</b> Inspire, empower, and guide
+            the next generation.
+          </li>
+        </ul>
+        <span
+          >Every voice counts. Every action matters.
+          <b>Join the movement!</b></span
+        >
+      </div>
+      <div class="quick-cta">
+        <button class="btn-main" (click)="openForm('support')">
+          Request Advocacy Support
+        </button>
+        <button class="btn-alt" (click)="openForm('advocate')">
+          Become a Male Advocate
+        </button>
+        <button class="btn-alt" (click)="openForm('nominate')">
+          Nominate a Community Hero
+        </button>
+      </div>
+      <div class="emergency-note">
+        <i class="fas fa-info-circle"></i>
+        <span
+          >Need urgent support?
+          <strong>Email: advocacy&#64;hecares.org</strong></span
+        >
+      </div>
+    </div>
+    <div class="hero-art">
+      <img
+        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80"
+        alt="Community Advocacy"
+      />
+    </div>
+  </div>
+
+  <!-- Modal Form -->
+  <div class="modal-overlay" *ngIf="showForm">
+    <div class="modal-form">
+      <div class="modal-header">
+        <h2>
+          {{
+            formType === "advocate"
+              ? "Become a Male Advocate"
+              : formType === "nominate"
+                ? "Nominate a Community Hero"
+                : "Request Advocacy Support"
+          }}
+        </h2>
+        <button class="close-btn" (click)="closeForm()" aria-label="Close">
+          &times;
+        </button>
+      </div>
+      <form
+        [formGroup]="advocacyForm"
+        (ngSubmit)="onSubmit()"
+        [class.submitted]="submitted"
+      >
+        <!-- SUPPORT FORM -->
+        <ng-container *ngIf="formType === 'support'">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                [class.invalid]="submitted && advocacyForm.get('name')?.invalid"
+                placeholder="Full Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number *</label>
+              <input
+                id="contact"
+                type="text"
+                formControlName="contact"
+                [class.invalid]="
+                  submitted && advocacyForm.get('contact')?.invalid
+                "
+                placeholder="Phone or WhatsApp"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                [class.invalid]="
+                  submitted && advocacyForm.get('email')?.invalid
+                "
+                placeholder="Email address"
+              />
+            </div>
+            <div class="form-group">
+              <label for="support_type">How can we help? *</label>
+              <select
+                id="support_type"
+                formControlName="support_type"
+                [class.invalid]="
+                  submitted && advocacyForm.get('support_type')?.invalid
+                "
+              >
+                <option value="" disabled selected>Select one...</option>
+                <option value="mediation">
+                  Mediation / Conflict Resolution
+                </option>
+                <option value="referral">Referral to Services</option>
+                <option value="mentorship">Mentorship</option>
+                <option value="family_healing">Family Healing</option>
+                <option value="legal_guidance">Legal Guidance</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="reason">Tell us more *</label>
+              <textarea
+                id="reason"
+                rows="2"
+                formControlName="reason"
+                [class.invalid]="
+                  submitted && advocacyForm.get('reason')?.invalid
+                "
+                placeholder="Describe your need or situation"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="files">
+                Attach a document (optional)
+                <span class="small">(PDF, DOC, JPG, PNG)</span>
+              </label>
+              <input
+                id="files"
+                type="file"
+                (change)="onFileChange($event)"
+                multiple
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              />
+              <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+                <span *ngFor="let f of uploadedFiles">{{ f.name }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- ADVOCATE FORM -->
+        <ng-container *ngIf="formType === 'advocate'">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                [class.invalid]="submitted && advocacyForm.get('name')?.invalid"
+                placeholder="Full Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number *</label>
+              <input
+                id="contact"
+                type="text"
+                formControlName="contact"
+                [class.invalid]="
+                  submitted && advocacyForm.get('contact')?.invalid
+                "
+                placeholder="Phone or WhatsApp"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                [class.invalid]="
+                  submitted && advocacyForm.get('email')?.invalid
+                "
+                placeholder="Email address"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="motivation"
+                >Why do you want to become an advocate? *</label
+              >
+              <textarea
+                id="motivation"
+                rows="2"
+                formControlName="motivation"
+                [class.invalid]="
+                  submitted && advocacyForm.get('motivation')?.invalid
+                "
+                placeholder="Share your motivation"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="skills"
+                >Relevant skills or experience (optional)</label
+              >
+              <input
+                id="skills"
+                type="text"
+                formControlName="skills"
+                placeholder="e.g. facilitation, mediation, leadership"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="files"
+                >Upload CV or credentials
+                <span class="small">(optional)</span></label
+              >
+              <input
+                id="files"
+                type="file"
+                (change)="onFileChange($event)"
+                multiple
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              />
+              <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+                <span *ngFor="let f of uploadedFiles">{{ f.name }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- NOMINATE FORM -->
+        <ng-container *ngIf="formType === 'nominate'">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="your_name">Your Name *</label>
+              <input
+                id="your_name"
+                type="text"
+                formControlName="your_name"
+                [class.invalid]="
+                  submitted && advocacyForm.get('your_name')?.invalid
+                "
+                placeholder="Your Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="your_contact">Your Contact *</label>
+              <input
+                id="your_contact"
+                type="text"
+                formControlName="your_contact"
+                [class.invalid]="
+                  submitted && advocacyForm.get('your_contact')?.invalid
+                "
+                placeholder="Your Phone or Email"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nominee_name">Nominee's Name *</label>
+              <input
+                id="nominee_name"
+                type="text"
+                formControlName="nominee_name"
+                [class.invalid]="
+                  submitted && advocacyForm.get('nominee_name')?.invalid
+                "
+                placeholder="Who are you nominating?"
+              />
+            </div>
+            <div class="form-group">
+              <label for="nominee_contact">Nominee's Contact *</label>
+              <input
+                id="nominee_contact"
+                type="text"
+                formControlName="nominee_contact"
+                [class.invalid]="
+                  submitted && advocacyForm.get('nominee_contact')?.invalid
+                "
+                placeholder="Nominee's Phone or Email"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="reason">Why are you nominating them? *</label>
+              <textarea
+                id="reason"
+                rows="2"
+                formControlName="reason"
+                [class.invalid]="
+                  submitted && advocacyForm.get('reason')?.invalid
+                "
+                placeholder="Describe their impact"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="files"
+                >Attach supporting document
+                <span class="small">(optional)</span></label
+              >
+              <input
+                id="files"
+                type="file"
+                (change)="onFileChange($event)"
+                multiple
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              />
+              <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+                <span *ngFor="let f of uploadedFiles">{{ f.name }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="form-actions">
+          <button class="btn-submit" type="submit">
+            {{
+              formType === "advocate"
+                ? "Submit Advocate Application"
+                : formType === "nominate"
+                  ? "Submit Nomination"
+                  : "Submit Support Request"
+            }}
+          </button>
+        </div>
+        <div class="success-msg" *ngIf="successMsg">{{ successMsg }}</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Features Grid / Info Cards -->
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-block" *ngFor="let feature of advocacyFeatures">
+        <div class="info-icon"><i [class]="feature.icon"></i></div>
+        <h2>{{ feature.title }}</h2>
+        <ul>
+          <li *ngFor="let point of feature.bullets">
+            <i class="fas fa-check-circle"></i> {{ point }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="impact-section">
+    <div class="impact-grid">
+      <div class="impact-card" *ngFor="let stat of impactStats">
+        <div class="impact-icon"><i [class]="stat.icon"></i></div>
+        <div class="impact-value">{{ stat.value }}</div>
+        <div class="impact-label">{{ stat.label }}</div>
+        <div class="impact-desc">{{ stat.description }}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <h2><i class="fas fa-question-circle"></i> Advocacy FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <button class="faq-question" (click)="toggleFAQ(i)">
+          <span>{{ faq.question }}</span>
+          <i
+            [class]="faq.isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          ></i>
+        </button>
+        <div class="faq-answer" *ngIf="faq.isOpen">
+          {{ faq.answer }}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

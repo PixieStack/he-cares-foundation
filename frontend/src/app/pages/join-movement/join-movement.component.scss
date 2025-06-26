@@ -1,0 +1,410 @@
+@import "../../../assets/styles/variables";
+
+.join-movement-page {
+  background: $hcf-bg-light;
+  min-height: 100vh;
+  padding-bottom: 3rem;
+
+  .page-spacer {
+    height: 6rem;
+    width: 100%;
+    display: block;
+  }
+
+  .header-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 3rem 1.25rem 2rem 1.25rem;
+    flex-wrap: wrap;
+    background: $white;
+    border-radius: $border-radius-xl;
+    margin: 2rem auto 1.5rem;
+    max-width: 1200px;
+    box-shadow: $shadow-lg;
+
+    .hero-content {
+      flex: 1 1 350px;
+      min-width: 240px;
+      .badge {
+        display: inline-block;
+        background: rgba($hcf-gold, 0.15);
+        color: $hcf-gold;
+        padding: 0.3rem 1rem;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+        letter-spacing: 1.2px;
+        border: 1.5px solid $hcf-gold;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 2.7rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: $hcf-blue-dark;
+        .text-accent {
+          color: $hcf-gold;
+        }
+      }
+      .hero-desc {
+        font-size: 1.13rem;
+        color: $hcf-text-grey;
+        margin-bottom: 1.3rem;
+        max-width: 500px;
+      }
+    }
+    .hero-art {
+      flex: 1 1 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      img {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        border-radius: $border-radius-xl;
+        object-fit: cover;
+        box-shadow: $shadow-md;
+      }
+    }
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.2rem;
+    max-width: 1200px;
+    margin: 2rem auto 2.5rem auto;
+    padding: 0 1.25rem;
+
+    .join-card {
+      background: $white;
+      border-radius: $border-radius-lg;
+      box-shadow: $shadow-md;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+      min-height: 400px;
+      transition:
+        box-shadow $transition-speed-normal $transition-ease,
+        transform $transition-speed-normal $transition-ease;
+      border: 1.5px solid rgba($hcf-blue-dark, 0.09);
+      position: relative;
+      height: 100%;
+
+      &:hover {
+        box-shadow: $shadow-xl;
+        border-color: $hcf-blue-dark;
+        transform: translateY(-5px) scale(1.015);
+        .icon-circle {
+          background: linear-gradient(
+            135deg,
+            $hcf-blue-dark 60%,
+            $hcf-gold 100%
+          );
+          color: $white;
+        }
+        .btn {
+          background: $hcf-blue-dark;
+          color: $white;
+        }
+      }
+
+      .icon-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+        margin-bottom: 1.1rem;
+        font-size: 2rem;
+        background: linear-gradient(135deg, $hcf-gold 20%, $hcf-blue-dark 85%);
+        color: $white;
+        transition:
+          background $transition-speed-normal $transition-ease,
+          color $transition-speed-normal $transition-ease,
+          filter $transition-speed-normal $transition-ease;
+        i {
+          color: $white;
+          transition: color $transition-speed-normal $transition-ease;
+        }
+      }
+
+      .card-content {
+        width: 100%;
+        flex: 1 1 auto;
+        h2 {
+          font-size: 1.18rem;
+          font-weight: 700;
+          color: $hcf-blue-dark;
+          margin-bottom: 0.7rem;
+          letter-spacing: -0.5px;
+        }
+        ul {
+          padding-left: 0;
+          margin-bottom: 1.1rem;
+          list-style: none;
+          li {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            color: $hcf-text-dark;
+            i {
+              color: $hcf-gold;
+              margin-right: 0.7rem;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+      .btn-row {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        margin-top: auto;
+      }
+      .btn {
+        font-size: 1.03rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        background: $hcf-gold;
+        color: $hcf-blue-dark;
+        padding: 0.6rem 1.4rem;
+        border-radius: 1.2rem;
+        text-decoration: none;
+        border: none;
+        transition:
+          background $transition-speed-normal $transition-ease,
+          color $transition-speed-normal $transition-ease;
+        i {
+          margin-left: 0.5rem;
+          font-size: 1rem;
+        }
+        &:hover,
+        &:focus-visible {
+          background: $hcf-blue-dark;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .donate-section {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background: $hcf-bg-light;
+    padding: 2rem 0 3rem 0;
+
+    .donate-card {
+      width: 100%;
+      max-width: 600px;
+      background: $white;
+      border-radius: $border-radius-xl;
+      box-shadow: $shadow-lg;
+      margin: 0 auto;
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .donate-info {
+      width: 100%;
+
+      .donate-title {
+        margin-bottom: 1.7rem;
+        color: $hcf-blue-dark;
+        font-size: 1.6rem;
+        font-weight: 800;
+        text-align: center;
+        .secure {
+          color: $hcf-gold;
+          margin-right: 0.45rem;
+          font-size: 1.12em;
+          vertical-align: middle;
+        }
+      }
+
+      .payment-gateway {
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+
+        .input-group {
+          display: flex;
+          flex-direction: column;
+          label {
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+            color: $hcf-blue-dark;
+            font-weight: 600;
+          }
+          input {
+            width: 100%;
+            padding: 0.95rem 1.2rem;
+            border: 1.5px solid #dbeafe;
+            border-radius: 12px;
+            font-size: 1.13rem;
+            background: #f8fafc;
+            outline: none;
+            transition: border-color 0.2s;
+            &:focus {
+              border-color: $hcf-gold;
+            }
+          }
+        }
+        .input-row {
+          display: flex;
+          gap: 1rem;
+          .input-group {
+            flex: 1;
+          }
+        }
+        .btn-block {
+          width: 100%;
+          margin-top: 0.5rem;
+          font-size: 1.18rem;
+          font-weight: 700;
+          padding: 1rem 0;
+          border-radius: 1.5rem;
+          background: $hcf-gold;
+          color: $hcf-blue-dark;
+          border: none;
+          transition:
+            background $transition-speed-normal $transition-ease,
+            color $transition-speed-normal $transition-ease;
+          &:hover,
+          &:focus-visible {
+            background: $hcf-blue-dark;
+            color: #fff;
+          }
+        }
+        .secure-note {
+          margin-top: 1rem;
+          text-align: center;
+          font-size: 1.01rem;
+          color: $hcf-text-grey;
+          i {
+            color: $hcf-gold;
+            margin-right: 0.4rem;
+          }
+        }
+      }
+
+      .alt-donation {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 0.97rem;
+        p {
+          font-weight: 600;
+          color: $hcf-blue-dark;
+          margin-bottom: 0.2rem;
+        }
+        .bank-details {
+          margin: 0 auto;
+          background: #f1f5f9;
+          border-radius: 0.6rem;
+          padding: 0.7rem 1rem;
+          font-family: monospace;
+          color: $hcf-text-dark;
+          display: inline-block;
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  .footer-cta {
+    text-align: center;
+    margin: 2.2rem 0 1.3rem 0;
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: $hcf-blue-dark;
+      margin-bottom: 1.1rem;
+      .text-accent {
+        color: $hcf-gold;
+      }
+    }
+    .btn-large {
+      font-size: 1.1rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 1.5rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      background: $hcf-blue-dark;
+      color: $white;
+      border: none;
+      margin-top: 0.6rem;
+      transition:
+        background $transition-speed-normal $transition-ease,
+        color $transition-speed-normal $transition-ease;
+      i {
+        margin-right: 0.5rem;
+      }
+      &:hover,
+      &:focus-visible {
+        background: $hcf-gold;
+        color: $hcf-blue-dark;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .header-hero,
+    .options-grid {
+      max-width: 99vw;
+    }
+    .donate-section .donate-card {
+      max-width: 99vw;
+      padding: 2rem 1rem;
+    }
+  }
+  @media (max-width: 900px) {
+    .options-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 700px) {
+    .header-hero {
+      padding: 1.2rem 0.5rem 1.4rem 0.5rem;
+      .hero-content {
+        h1 {
+          font-size: 1.5rem;
+        }
+        .hero-desc {
+          font-size: 1.05rem;
+        }
+      }
+      .hero-art img {
+        max-width: 99vw;
+      }
+    }
+    .options-grid {
+      gap: 1.1rem;
+      padding: 0 0.5rem;
+      grid-template-columns: 1fr;
+    }
+    .donate-section {
+      padding: 1rem 0 2rem 0;
+      .donate-card {
+        padding: 1.5rem 0.5rem;
+      }
+    }
+    .footer-cta h2 {
+      font-size: 1rem;
+    }
+  }
+}

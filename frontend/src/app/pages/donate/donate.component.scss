@@ -1,0 +1,307 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+@import "../../../assets/styles/variables";
+
+.donate-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2.5rem 0;
+  background: linear-gradient(120deg, #f8fafc 60%, #e0e7ff 100%);
+  min-height: 100vh;
+}
+
+.donate-card {
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 4px 32px rgba($hcf-blue-dark, 0.11);
+  max-width: 900px;
+  width: 100%;
+  min-width: 350px;
+  padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.donate-main-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: $hcf-blue-dark;
+  text-align: center;
+  margin-bottom: 1.8rem;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  .text-accent {
+    color: $hcf-gold;
+  }
+}
+
+.donate-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 0.7rem;
+
+  .tab-btn {
+    flex: 1;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 30px;
+    padding: 0.85rem 2.1rem;
+    font-weight: 700;
+    color: $hcf-blue-dark;
+    font-size: 1.11rem;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      color 0.2s;
+    outline: none;
+
+    &.active,
+    &:hover {
+      background: $hcf-blue-dark;
+      color: #fff;
+    }
+    i {
+      margin-right: 0.55em;
+    }
+  }
+}
+
+.donate-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+  color: $hcf-gold;
+  display: flex;
+  align-items: center;
+
+  .secure {
+    color: #059669;
+    margin-right: 0.5rem;
+    font-size: 1.2em;
+  }
+}
+
+.gateway,
+.goods {
+  width: 100%;
+}
+
+.input-row {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.05rem;
+
+  .input-group {
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+  }
+}
+
+.input-group {
+  margin-bottom: 1.13rem;
+
+  label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: $hcf-gold;
+    display: block;
+    margin-bottom: 0.37rem;
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #e0e7ff;
+    border-radius: 0.6rem;
+    font-size: 1rem;
+    transition: border 0.23s;
+    outline: none;
+    background: #f8fafc;
+    color: $hcf-blue-dark;
+    &:focus {
+      border-color: $hcf-gold;
+      background: #fffbe7;
+    }
+  }
+}
+
+.payment-gateway,
+.goods-donation-form {
+  width: 100%;
+}
+
+.btn-main,
+.btn-accent {
+  background: linear-gradient(90deg, $hcf-gold 0%, $hcf-blue-dark 100%);
+  color: $white;
+  border: none;
+  padding: 0.85rem 2.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba($hcf-blue-dark, 0.08);
+  transition:
+    background 0.18s,
+    color 0.18s,
+    transform 0.18s;
+  margin-top: 1.2rem;
+  margin-bottom: 0.8rem;
+  display: block;
+  width: 100%;
+  &:hover,
+  &:focus {
+    background: linear-gradient(90deg, $hcf-blue-dark 0%, $hcf-gold 100%);
+    color: $hcf-blue-dark;
+    transform: translateY(-2px) scale(1.04);
+    outline: none;
+  }
+}
+
+.secure-note {
+  margin-top: 0.2rem;
+  font-size: 0.98rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  i {
+    color: $hcf-blue-dark;
+    margin-right: 0.3em;
+  }
+}
+
+.alt-donation {
+  margin-top: 1.1rem;
+  p {
+    margin-bottom: 0.3rem;
+    color: $hcf-blue-dark;
+    font-weight: 600;
+  }
+  .bank-details {
+    background: #f1f5f9;
+    border-radius: 0.65rem;
+    padding: 0.8rem 1.1rem;
+    font-size: 0.99rem;
+    color: #1e293b;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+  }
+}
+
+/* --- CHECKBOX GRID: 2 PER ROW, ALIGNED & NICE UX --- */
+.goods-list {
+  width: 100%;
+
+  .goods-list-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem 2.3rem;
+    width: 100%;
+  }
+
+  .goods-item {
+    /* Make the entire row clickable if desired, for better UX: */
+    /* label { display: flex; ... } is below if you want this! */
+
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    background: #f9fafb;
+    border-radius: 0.45rem;
+    padding: 0.6em 1.2em 0.6em 0.9em;
+    min-width: 140px;
+    max-width: 420px;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    height: 48px;
+
+    /* For best accessibility, wrap the checkbox and label in a label tag */
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      font-weight: 700;
+      color: $hcf-blue-dark;
+      font-size: 1.08rem;
+      margin: 0;
+      white-space: nowrap;
+      cursor: pointer;
+      flex-grow: 1;
+      flex-shrink: 1;
+      height: 100%;
+      /* Make the whole row clickable if you want */
+      width: 100%;
+    }
+    input[type="checkbox"] {
+      accent-color: $hcf-gold;
+      width: 1.2em;
+      height: 1.2em;
+      margin-right: 0.5em;
+      margin-bottom: 0;
+      margin-top: 0;
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .goods-qty {
+      width: 3.2em;
+      min-width: 3.2em;
+      margin-left: 0.6em;
+      padding: 0.22em 0.5em;
+      border: 1.5px solid #e0e7ff;
+      border-radius: 0.4rem;
+      font-size: 1rem;
+      background: #fff;
+      text-align: center;
+      color: $hcf-blue-dark;
+      font-weight: 600;
+      display: inline-block;
+      vertical-align: middle;
+      height: 2.2em;
+    }
+  }
+}
+
+/* MOBILE: single column */
+@media (max-width: 900px) {
+  .goods-list-row {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+  .goods-item {
+    min-width: 120px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .donate-card {
+    padding: 1.1rem 0.3rem;
+    max-width: 100vw;
+  }
+  .donate-main-title {
+    font-size: 1.2rem;
+  }
+  .input-row {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .goods-list-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .goods-item {
+    flex-basis: 100% !important;
+    min-width: 90px;
+    max-width: 100%;
+  }
+}

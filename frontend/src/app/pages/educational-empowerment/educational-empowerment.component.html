@@ -1,0 +1,459 @@
+<div class="educational-empowerment-page crisis-support-page">
+  <div class="hero-spacer"></div>
+  <div class="header-hero">
+    <div class="hero-content">
+      <span class="badge">EDUCATION</span>
+      <h1>Educational <span class="text-accent">Empowerment</span></h1>
+      <div class="hero-desc">
+        <strong>Empowering futures with real support:</strong>
+        <ul>
+          <li>
+            <b>Sanitary pad & school supply drives:</b> Keep girls and boys in
+            school with dignity.
+          </li>
+          <li>
+            <b>Scholarships:</b> Giving talented youth a chance to succeed.
+          </li>
+          <li>
+            <b>Skills & Digital Bootcamps:</b> Learn real-world and work-ready
+            skills.
+          </li>
+          <li>
+            <b>Adult & Literacy Programs:</b> Everyone deserves a second chance
+            at education.
+          </li>
+          <li>
+            <b>Mentorship:</b> Connect with professionals and role models.
+          </li>
+        </ul>
+        <span
+          >All programs are <b>free</b>, <b>confidential</b>, and
+          <b>focused on your growth</b>.</span
+        >
+      </div>
+      <div class="quick-cta">
+        <button class="btn-main" (click)="openForm('support')">
+          Request Support / Apply
+        </button>
+        <button class="btn-alt" (click)="openForm('suggest')">
+          Suggest a Program
+        </button>
+      </div>
+      <div class="emergency-note">
+        <i class="fas fa-info-circle"></i>
+        <span
+          >Need urgent educational help or advice?
+          <strong>Email: support&#64;hecares.org</strong></span
+        >
+      </div>
+    </div>
+    <div class="hero-art">
+      <img
+        src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=700&q=80"
+        alt="Educational Empowerment"
+      />
+    </div>
+  </div>
+
+  <!-- Modal Form -->
+  <div class="modal-overlay" *ngIf="showForm">
+    <div class="modal-form">
+      <div class="modal-header">
+        <h2>
+          {{
+            formType === "suggest"
+              ? "Suggest an Educational Program"
+              : "Request Support / Apply for a Program"
+          }}
+        </h2>
+        <button class="close-btn" (click)="closeForm()" aria-label="Close">
+          &times;
+        </button>
+      </div>
+      <form
+        [formGroup]="empowermentForm"
+        (ngSubmit)="onSubmit()"
+        [class.submitted]="submitted"
+      >
+        <!-- SUPPORT/APPLY FORM -->
+        <ng-container *ngIf="formType === 'support'">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                [class.invalid]="
+                  submitted && empowermentForm.get('name')?.invalid
+                "
+                placeholder="Full Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number *</label>
+              <input
+                id="contact"
+                type="text"
+                formControlName="contact"
+                [class.invalid]="
+                  submitted && empowermentForm.get('contact')?.invalid
+                "
+                placeholder="Phone or WhatsApp"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                [class.invalid]="
+                  submitted && empowermentForm.get('email')?.invalid
+                "
+                placeholder="Email address"
+              />
+            </div>
+            <div class="form-group full">
+              <label>Programs interested in *</label>
+              <div class="checkboxes checkboxes-grid">
+                <label *ngFor="let option of programOptions">
+                  <input
+                    type="checkbox"
+                    [value]="option.value"
+                    [checked]="
+                      empowermentForm
+                        .get('program')
+                        ?.value.includes(option.value)
+                    "
+                    (change)="toggleProgram(option.value)"
+                  />
+                  {{ option.label }}
+                </label>
+              </div>
+              <div
+                class="error-msg"
+                *ngIf="submitted && empowermentForm.get('program')?.invalid"
+              >
+                Please select at least one program
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="need_details">Tell us why you need support *</label>
+              <textarea
+                id="need_details"
+                rows="2"
+                formControlName="need_details"
+                [class.invalid]="
+                  submitted && empowermentForm.get('need_details')?.invalid
+                "
+                maxlength="250"
+                placeholder="Briefly describe your situation or goal (max 250 chars)"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="files">
+                Attach a document (optional)
+                <span class="small">(PDF, DOC, JPG, PNG)</span>
+              </label>
+              <input
+                id="files"
+                type="file"
+                (change)="onFileChange($event)"
+                multiple
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              />
+              <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+                <span *ngFor="let f of uploadedFiles">{{ f.name }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- SUGGEST PROGRAM FORM -->
+        <ng-container *ngIf="formType === 'suggest'">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input
+                id="name"
+                type="text"
+                formControlName="name"
+                [class.invalid]="
+                  submitted && empowermentForm.get('name')?.invalid
+                "
+                placeholder="Full Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact Number *</label>
+              <input
+                id="contact"
+                type="text"
+                formControlName="contact"
+                [class.invalid]="
+                  submitted && empowermentForm.get('contact')?.invalid
+                "
+                placeholder="Phone or WhatsApp"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                [class.invalid]="
+                  submitted && empowermentForm.get('email')?.invalid
+                "
+                placeholder="Email address"
+              />
+            </div>
+            <div class="form-group">
+              <label for="title">Program Name *</label>
+              <input
+                id="title"
+                type="text"
+                formControlName="title"
+                [class.invalid]="
+                  submitted && empowermentForm.get('title')?.invalid
+                "
+                placeholder="Name of your program idea"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="description">Describe your idea *</label>
+              <textarea
+                id="description"
+                rows="2"
+                formControlName="description"
+                [class.invalid]="
+                  submitted && empowermentForm.get('description')?.invalid
+                "
+                maxlength="180"
+                placeholder="What is your program about? (max 180 chars)"
+              ></textarea>
+            </div>
+            <div class="form-group full">
+              <label for="beneficiaries">Who will benefit? *</label>
+              <input
+                id="beneficiaries"
+                type="text"
+                formControlName="beneficiaries"
+                [class.invalid]="
+                  submitted && empowermentForm.get('beneficiaries')?.invalid
+                "
+                placeholder="e.g. primary school girls, unemployed mothers"
+              />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full">
+              <label for="files"
+                >Attach supporting document
+                <span class="small">(optional)</span></label
+              >
+              <input
+                id="files"
+                type="file"
+                (change)="onFileChange($event)"
+                multiple
+                accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              />
+              <div class="uploaded-files" *ngIf="uploadedFiles.length > 0">
+                <span *ngFor="let f of uploadedFiles">{{ f.name }}</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="form-actions">
+          <button class="btn-submit" type="submit">
+            {{
+              formType === "suggest"
+                ? "Submit Program Suggestion"
+                : "Submit Support Request"
+            }}
+          </button>
+        </div>
+        <div class="success-msg" *ngIf="successMsg">{{ successMsg }}</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Info Cards Section (with Icons and Bullet Points) -->
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-female"></i></div>
+        <h2>Sanitary Pad Drive</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Monthly dignity packs delivered
+            to schools & communities
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Hygiene education for girls and
+            boys
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Reducing absenteeism and stigma
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-book"></i></div>
+        <h2>School Supplies</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Backpacks, uniforms, and
+            stationery to learners in need
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Annual drives targeting
+            vulnerable communities
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Supporting school retention
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <h2>Skills Training</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Computer basics, coding, sewing,
+            catering, business skills
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Free workshops for youth and
+            adults
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Certificates provided upon
+            completion
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-book-open"></i></div>
+        <h2>Literacy & Adult Education</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> After-school reading clubs for
+            children
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Adult Basic Education & Training
+            (ABET)
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Volunteer-led mentorship and
+            literacy support
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-user-friends"></i></div>
+        <h2>Boys’ Bootcamps & Mentorship</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Workshops and bootcamps led by
+            positive male mentors
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Building life skills, respect,
+            and confidence
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Opportunities to learn from role
+            models in the community
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-laptop-code"></i></div>
+        <h2>Career & Success Support</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Workshops on choosing career
+            paths, setting goals, and planning for the future
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Guidance for next steps after
+            high school, college, or training
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Opportunities to connect with
+            mentors and community role models
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-hands-helping"></i></div>
+        <h2>Social Worker Support</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Access to a caring social worker
+            for educational & family matters
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Confidential guidance and
+            referral services
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Support for trauma, bullying,
+            and abuse cases
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-users"></i></div>
+        <h2>Parent & Community Workshops</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Parenting skills and positive
+            discipline sessions
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Community forums on child
+            protection and education
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Building safer, more supportive
+            environments
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq-section">
+    <h2><i class="fas fa-question-circle"></i> Educational Empowerment FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <button class="faq-question" (click)="toggleFAQ(i)">
+          <span>{{ faq.question }}</span>
+          <i
+            [class]="faq.isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          ></i>
+        </button>
+        <div class="faq-answer" *ngIf="faq.isOpen">
+          {{ faq.answer }}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

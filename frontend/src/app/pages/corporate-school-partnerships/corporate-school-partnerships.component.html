@@ -1,0 +1,216 @@
+<div class="corporate-section">
+  <div class="corporate-card">
+    <h1 class="corporate-main-title">
+      <i class="fas fa-handshake text-accent"></i>
+      Corporate &amp; School Partnerships
+    </h1>
+    <div class="corporate-tabs">
+      <button
+        class="tab-btn"
+        [class.active]="selectedTab === 'partner'"
+        (click)="selectedTab = 'partner'"
+      >
+        <i class="fas fa-briefcase"></i> Become a Partner
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="selectedTab === 'nominate'"
+        (click)="selectedTab = 'nominate'"
+      >
+        <i class="fas fa-share-alt"></i> Nominate an Org
+      </button>
+    </div>
+
+    <!-- PARTNER TAB -->
+    <div class="corporate-info" *ngIf="selectedTab === 'partner'">
+      <h2 class="corporate-title">
+        <i class="fas fa-handshake secure"></i>&nbsp;&nbsp;Partner With Us
+      </h2>
+      <form
+        #partnerForm="ngForm"
+        class="partnership-form"
+        (ngSubmit)="processPartnership(partnerForm)"
+        autocomplete="off"
+      >
+        <div class="input-row">
+          <div class="input-group">
+            <label>Type *</label>
+            <select name="orgType" required [(ngModel)]="partnership.orgType">
+              <option value="" disabled selected>Select Type</option>
+              <option value="company">Company / Business</option>
+              <option value="school">School / University</option>
+              <option value="org">Other Organization</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Organization Name *</label>
+            <input
+              name="orgName"
+              required
+              [(ngModel)]="partnership.orgName"
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Contact Person *</label>
+            <input
+              name="contactName"
+              required
+              [(ngModel)]="partnership.contactName"
+              type="text"
+            />
+          </div>
+          <div class="input-group">
+            <label>Contact Email *</label>
+            <input
+              name="contactEmail"
+              required
+              [(ngModel)]="partnership.contactEmail"
+              type="email"
+            />
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Phone</label>
+            <input name="phone" [(ngModel)]="partnership.phone" type="text" />
+          </div>
+          <div class="input-group">
+            <label>I'm Interested In *</label>
+            <select name="interest" required [(ngModel)]="partnership.interest">
+              <option value="" disabled selected>Select option</option>
+              <option value="project">Project Collaboration</option>
+              <option value="sponsorship">Sponsorship</option>
+              <option value="awareness">Awareness Programs</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Message / Idea</label>
+          <textarea
+            name="message"
+            [(ngModel)]="partnership.message"
+            rows="2"
+            placeholder="Let us know your idea or question..."
+          ></textarea>
+        </div>
+        <div class="success-msg" *ngIf="partnershipSuccess">
+          {{ partnershipSuccess }}
+        </div>
+        <button class="btn-main" type="submit">
+          <i class="fas fa-handshake"></i> Submit Interest
+        </button>
+      </form>
+    </div>
+
+    <!-- NOMINATE TAB -->
+    <div class="corporate-info" *ngIf="selectedTab === 'nominate'">
+      <h2 class="corporate-title">
+        <i class="fas fa-share-alt"></i>&nbsp;&nbsp;Nominate a Company or School
+      </h2>
+      <form
+        #nomForm="ngForm"
+        class="nominate-form"
+        (ngSubmit)="processNomination(nomForm)"
+        autocomplete="off"
+      >
+        <div class="input-row">
+          <div class="input-group">
+            <label>Your Name *</label>
+            <input
+              name="yourName"
+              required
+              [(ngModel)]="nominate.yourName"
+              type="text"
+            />
+          </div>
+          <div class="input-group">
+            <label>Type *</label>
+            <select name="orgType" required [(ngModel)]="nominate.orgType">
+              <option value="" disabled selected>Select Type</option>
+              <option value="company">Company / Business</option>
+              <option value="school">School / University</option>
+              <option value="org">Other Organization</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label>Org Name *</label>
+            <input
+              name="orgName"
+              required
+              [(ngModel)]="nominate.orgName"
+              type="text"
+            />
+          </div>
+          <div class="input-group">
+            <label>Contact Email *</label>
+            <input
+              name="contactEmail"
+              required
+              [(ngModel)]="nominate.contactEmail"
+              type="email"
+            />
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Why nominate? (optional)</label>
+          <textarea
+            name="message"
+            [(ngModel)]="nominate.message"
+            rows="2"
+            placeholder="They care about impact, are active in the community..."
+          ></textarea>
+        </div>
+        <div class="success-msg" *ngIf="nominateSuccess">
+          {{ nominateSuccess }}
+        </div>
+        <button class="btn-main" type="submit">
+          <i class="fas fa-share"></i> Nominate &amp; Share
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODERN PARTNERS GRID -->
+  <section class="modern-partners">
+    <h2 class="modern-partners-title">
+      <i class="fas fa-users"></i> Our Partners
+    </h2>
+    <div class="modern-partners-row">
+      <div class="modern-partner-card" *ngFor="let partner of partners">
+        <a
+          *ngIf="partner.link"
+          [href]="partner.link"
+          class="modern-partner-logo"
+          target="_blank"
+          rel="noopener"
+        >
+          <img [src]="partner.logo" [alt]="partner.name" />
+        </a>
+        <div class="modern-partner-info">
+          <div class="modern-partner-name">{{ partner.name }}</div>
+          <div class="modern-partner-desc">{{ partner.desc }}</div>
+          <a
+            *ngIf="partner.link"
+            class="modern-partner-link"
+            [href]="partner.link"
+            target="_blank"
+            rel="noopener"
+          >
+            Visit Website <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="modern-partners-footer">
+      <span class="modern-partners-note">
+        <em>Want your org here?</em> <strong>Become a partner!</strong>
+      </span>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,139 @@
+<header class="main-header" [class.scrolled]="isScrolled">
+  <div class="container">
+    <nav class="navbar">
+      <!-- Logo -->
+      <div class="navbar-brand">
+        <a routerLink="/" class="brand-logo">
+          <img
+            src="/assets/images/logo.png"
+            alt="Logo"
+            class="logo-image full-logo"
+          />
+          <div class="brand-text">
+            <span class="brand-name">HE CARES</span>
+            <span class="brand-tagline">Foundation</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="navbar-nav desktop-nav">
+        <ul class="nav-list">
+          <li
+            *ngFor="let item of navigationItems"
+            class="nav-item"
+            [class.has-dropdown]="item.submenu"
+          >
+            <a
+              [routerLink]="item.route"
+              class="nav-link"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+              tabindex="0"
+            >
+              <span>{{ item.label }}</span>
+              <i
+                *ngIf="item.submenu"
+                class="fas fa-chevron-down dropdown-arrow"
+              ></i>
+            </a>
+            <!-- Dropdown (CSS hover) -->
+            <div *ngIf="item.submenu" class="dropdown-menu">
+              <a
+                *ngFor="let subItem of item.submenu"
+                [routerLink]="subItem.route"
+                class="dropdown-link"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ subItem.label }}</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Actions -->
+      <div class="navbar-actions desktop-nav">
+        <a routerLink="/donate" class="btn btn-primary btn-donate">
+          <i class="fas fa-heart"></i>
+          <span>Donate Now</span>
+        </a>
+        <div class="emergency-contact">
+          <i class="fas fa-phone-alt"></i>
+          <span>Emergency: 068 126 3127</span>
+        </div>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="mobile-menu-toggle"
+        (click)="toggleMobileMenu()"
+        [class.active]="isMobileMenuOpen"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" [class.open]="isMobileMenuOpen">
+      <div class="mobile-nav-content">
+        <ul class="mobile-nav-list">
+          <li *ngFor="let item of navigationItems" class="mobile-nav-item">
+            <div class="mobile-link-row">
+              <a
+                [routerLink]="item.route"
+                class="mobile-nav-link"
+                routerLinkActive="active"
+                (click)="closeMobileMenu()"
+              >
+                <span>{{ item.label }}</span>
+              </a>
+              <button
+                *ngIf="item.submenu"
+                class="mobile-submenu-toggle"
+                (click)="toggleMobileDropdown(item)"
+                aria-label="Expand submenu"
+                type="button"
+              >
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </div>
+            <div *ngIf="item.submenu && item.isOpen" class="mobile-submenu">
+              <a
+                *ngFor="let subItem of item.submenu"
+                [routerLink]="subItem.route"
+                class="mobile-submenu-link"
+                (click)="closeMobileMenu()"
+              >
+                {{ subItem.label }}
+              </a>
+            </div>
+          </li>
+        </ul>
+        <div class="mobile-nav-actions">
+          <a
+            routerLink="/donate"
+            class="btn btn-primary btn-block"
+            (click)="closeMobileMenu()"
+          >
+            <i class="fas fa-heart"></i>
+            Donate Now
+          </a>
+          <div class="mobile-emergency">
+            <i class="fas fa-phone-alt"></i>
+            <span>Emergency: 068 126 3127</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div
+    class="mobile-overlay"
+    [class.active]="isMobileMenuOpen"
+    (click)="closeMobileMenu()"
+  ></div>
+</header>

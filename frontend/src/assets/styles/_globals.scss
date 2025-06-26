@@ -1,0 +1,378 @@
+// frontend/src/assets/styles/_globals.scss
+
+// Global Reset and Base Styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  @media (max-width: 1200px) {
+    font-size: 15px;
+  }
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
+body {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $hcf-text-grey; // Fixed: use consistent variable name
+  background-color: $white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+// Links
+a {
+  color: $hcf-blue-dark;
+  text-decoration: none;
+  transition: all $transition-speed-normal $transition-ease;
+
+  &:hover {
+    color: $hcf-orange;
+    text-decoration: underline;
+  }
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-heading;
+  color: $hcf-text-dark;
+  margin-bottom: $padding-sm;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3.8rem;
+}
+h2 {
+  font-size: 2.8rem;
+}
+h3 {
+  font-size: 2.2rem;
+}
+h4 {
+  font-size: 1.8rem;
+}
+h5 {
+  font-size: 1.4rem;
+}
+h6 {
+  font-size: 1.1rem;
+}
+
+// Paragraphs
+p {
+  margin-bottom: $padding-sm;
+  color: $hcf-text-grey;
+  font-size: 1.05rem;
+}
+
+// Containers
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 $padding-md;
+
+  @media (max-width: 768px) {
+    padding: 0 $padding-sm;
+  }
+}
+
+// Section Base Styles
+.section {
+  padding: $padding-xl 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &.bg-light {
+    background-color: $hcf-bg-light;
+  }
+  &.bg-dark {
+    background-color: $hcf-text-dark;
+    color: $white;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: $white;
+    }
+  }
+  &.bg-primary-dark {
+    background: $hcf-primary-gradient;
+    color: $white;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: $white;
+    }
+  }
+  &.bg-secondary-bright {
+    background-color: $hcf-orange;
+    color: $white;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      color: $white;
+    }
+  }
+}
+
+// Section Title Specifics
+.section-title {
+  font-family: $font-heading;
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-bottom: $padding-md;
+  color: $hcf-text-dark;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: $hcf-orange;
+    margin: $padding-sm auto 0;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 2.5rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.7rem;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2.5rem;
+  border-radius: $button-border-radius;
+  font-family: $font-body;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-speed-normal $transition-ease;
+  border: none;
+
+  i {
+    margin-right: $padding-xs;
+    font-size: 1em;
+  }
+
+  &.btn-primary {
+    background-color: $hcf-blue-dark;
+    color: $white;
+    box-shadow: $shadow-md;
+    &:hover {
+      background-color: #1e40af; // Hardcoded darker blue
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &.btn-secondary {
+    background-color: $white;
+    color: $hcf-blue-dark;
+    box-shadow: $shadow-md;
+    &:hover {
+      background-color: $hcf-bg-light;
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &.btn-accent {
+    background-color: $hcf-gold;
+    color: $hcf-text-dark;
+    box-shadow: $shadow-md;
+    &:hover {
+      background-color: #f59e0b; // Hardcoded darker gold
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &.btn-outline-primary,
+  &.btn-outline {
+    background-color: transparent;
+    border: 2px solid $hcf-blue-dark;
+    color: $hcf-blue-dark;
+    &:hover {
+      background-color: $hcf-blue-dark;
+      color: $white;
+      transform: translateY(-3px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &.btn-large {
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+  }
+
+  &.btn-block {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// Text Utilities
+.text-white {
+  color: $white !important;
+}
+.text-primary-color {
+  color: $hcf-blue-dark !important;
+}
+.text-secondary-color {
+  color: $hcf-orange !important;
+}
+.text-accent-color {
+  color: $hcf-gold !important;
+}
+.text-dark-grey {
+  color: $hcf-text-dark !important;
+}
+.text-light-grey {
+  color: $hcf-text-grey !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+
+// Margins and Paddings
+.mt-md {
+  margin-top: $padding-md;
+}
+.mb-md {
+  margin-bottom: $padding-md;
+}
+.py-lg {
+  padding-top: $padding-lg;
+  padding-bottom: $padding-lg;
+}
+
+// Icon Styling
+.fas,
+.fab {
+  color: $hcf-blue-dark;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Form Elements
+input,
+textarea,
+select {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  padding: $input-padding-y $input-padding-x;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: all $transition-speed-normal $transition-ease;
+
+  &:focus {
+    outline: none;
+    border-color: $input-border-focus-color;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); // Hardcoded blue with opacity
+  }
+}
+
+// Accessibility
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only {
+  @include visually-hidden;
+}
+
+*:focus-visible {
+  outline: 2px solid $hcf-blue-dark;
+  outline-offset: 2px;
+  border-radius: $border-radius-sm;
+}

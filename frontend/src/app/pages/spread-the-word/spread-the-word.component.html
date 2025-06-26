@@ -1,0 +1,199 @@
+<div class="spread-word-page">
+  <div class="hero-spacer"></div>
+  <div class="header-hero improved-hero">
+    <div class="hero-content">
+      <span class="badge">SPREAD THE WORD</span>
+      <h1>Spread the <span class="text-accent">Movement</span></h1>
+      <div class="hero-desc">
+        <strong>HE CARES MOVEMENT</strong>
+        <p>
+          A movement that speaks for our Women &amp; Children. Inviting men to
+          be an example — Take Charge, Be Visible and Responsible.
+        </p>
+        <p>
+          <em
+            >“It’s how a man governs his kingdom — with his surroundings being
+            his kingdom.”</em
+          >
+        </p>
+        <ul>
+          <li>See the Impact: Drop your pin on our world map.</li>
+          <li>
+            Show Your Face: Upload your selfie with our digital badge &amp; get
+            featured.
+          </li>
+          <li>
+            Make It Yours: Create a custom “I Support” poster with your name or
+            group.
+          </li>
+          <li>
+            Share Your Story: Tell us (in video or text) why you care — inspire
+            others!
+          </li>
+          <li>
+            Challenge a Friend: Send a one-click invite and see who joins next!
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-art creative-hero-art">
+      <div class="hero-art-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=700&q=80"
+          alt="Spread the Movement"
+        />
+        <div class="art-overlay"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <!-- CARD 1: Impact Pin -->
+    <!-- CARD 4: Share Your Story -->
+    <section class="spread-card">
+      <div class="form-header">
+        <i class="fas fa-quote-left"></i>
+        <span>Share Your Story</span>
+      </div>
+      <form
+        [formGroup]="storyForm"
+        (ngSubmit)="submitStory()"
+        class="card-form"
+      >
+        <div class="card-fields">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input formControlName="name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Your Story (why you care) *</label>
+            <textarea
+              formControlName="text"
+              rows="3"
+              maxlength="600"
+              required
+            ></textarea>
+          </div>
+          <ul class="bullet-list">
+            <li>Inspire the community</li>
+            <li>Your voice matters</li>
+            <li>Share as text or as a video</li>
+          </ul>
+          <div class="success-msg" *ngIf="storySuccess">{{ storySuccess }}</div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-main" type="submit">
+            <i class="fas fa-bullhorn"></i> Share Story
+          </button>
+        </div>
+      </form>
+    </section>
+    <!-- CARD 5: Challenge a Friend -->
+    <section class="spread-card">
+      <div class="form-header">
+        <i class="fas fa-paper-plane"></i>
+        <span>Challenge a Friend!</span>
+      </div>
+      <form
+        [formGroup]="challengeForm"
+        (ngSubmit)="submitChallenge()"
+        class="card-form"
+      >
+        <div class="card-fields">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input formControlName="yourName" type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Friend’s Email *</label>
+            <input formControlName="friendEmail" type="email" required />
+          </div>
+          <div class="form-group">
+            <label>Add a Message (optional)</label>
+            <textarea
+              formControlName="message"
+              rows="2"
+              placeholder="Hey! I just joined the He Cares Movement and thought of you. Join me and let's make a difference!"
+            ></textarea>
+          </div>
+          <ul class="bullet-list">
+            <li>Invite someone to take action</li>
+            <li>Keep the movement growing</li>
+            <li>Share via email or DM</li>
+          </ul>
+          <div class="success-msg" *ngIf="challengeSuccess">
+            {{ challengeSuccess }}
+          </div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-main" type="submit">
+            <i class="fas fa-paper-plane"></i> Send Challenge
+          </button>
+        </div>
+      </form>
+    </section>
+    <!-- CARD 6: Social Share -->
+    <section class="spread-card">
+      <div class="form-header">
+        <i class="fas fa-share-alt"></i>
+        <span>Share the Movement Instantly!</span>
+      </div>
+      <div class="card-fields">
+        <div class="share-buttons">
+          <a
+            href="https://www.tiktok.com/tag/HeCaresMovement"
+            target="_blank"
+            class="btn-share tiktok"
+            ><i class="fab fa-tiktok"></i> TikTok</a
+          >
+          <a
+            href="https://www.facebook.com/sharer/sharer.php?u=https://hecares.org"
+            target="_blank"
+            class="btn-share fb"
+            ><i class="fab fa-facebook-f"></i> Facebook</a
+          >
+          <a
+            href="https://wa.me/?text=I'm+supporting+the+HE+CARES+MOVEMENT!+Join+me+https://hecares.org"
+            target="_blank"
+            class="btn-share wa"
+            ><i class="fab fa-whatsapp"></i> WhatsApp</a
+          >
+          <a
+            href="https://twitter.com/intent/tweet?text=I'm supporting the HE CARES MOVEMENT! Join me https://hecares.org #HeCaresMovement"
+            target="_blank"
+            class="btn-share tw"
+            ><i class="fab fa-twitter"></i> Twitter</a
+          >
+          <a
+            href="https://www.linkedin.com/sharing/share-offsite/?url=https://hecares.org"
+            target="_blank"
+            class="btn-share ln"
+            ><i class="fab fa-linkedin-in"></i> LinkedIn</a
+          >
+          <button class="btn-share cp" (click)="copyShareText()" type="button">
+            <i class="fas fa-copy"></i> Copy Text
+          </button>
+        </div>
+        <ul class="bullet-list">
+          <li>Share the message on your socials</li>
+          <li>Use our hashtags for visibility</li>
+          <li>Let your friends join the wave</li>
+        </ul>
+        <div class="hashtags-tip">
+          <strong>Hashtags:</strong> {{ movementHashtags }}
+        </div>
+        <div class="sample-caption">
+          <strong>Sample Caption:</strong>
+          <span>
+            I’m supporting the HE CARES MOVEMENT — a movement that stands for
+            our Women &amp; Children. Men, be visible. Be part of the change.
+            #HeCaresMovement #MenWhoCare
+          </span>
+        </div>
+      </div>
+      <div class="card-actions">
+        <!-- Empty for alignment -->
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,210 @@
+<div class="donate-section">
+  <div class="donate-card">
+    <h1 class="donate-main-title">
+      <i class="fas fa-heart text-accent"></i>
+      Donate to He Cares Foundation
+    </h1>
+    <div class="donate-tabs">
+      <button
+        class="tab-btn"
+        [class.active]="selectedTab === 'money'"
+        (click)="selectedTab = 'money'"
+      >
+        <i class="fas fa-credit-card"></i> Financial Support
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="selectedTab === 'goods'"
+        (click)="selectedTab = 'goods'"
+      >
+        <i class="fas fa-box"></i> Donate Essential Goods
+      </button>
+    </div>
+
+    <!-- Financial Support Tab -->
+    <div class="donate-info gateway" *ngIf="selectedTab === 'money'">
+      <h2 class="donate-title">
+        <i class="fas fa-lock secure"></i>&nbsp;&nbsp;&nbsp;Secure Payment
+      </h2>
+      <form
+        class="payment-gateway"
+        (submit)="processDonation($event)"
+        autocomplete="off"
+      >
+        <div class="input-row">
+          <div class="input-group">
+            <label for="donation-amount">Amount (ZAR)</label>
+            <input
+              id="donation-amount"
+              type="number"
+              min="10"
+              required
+              placeholder="Enter amount"
+              [(ngModel)]="donation.amount"
+              name="amount"
+            />
+          </div>
+          <div class="input-group">
+            <label for="account-name">Cardholder Name</label>
+            <input
+              id="account-name"
+              type="text"
+              required
+              placeholder="Your Name"
+              [(ngModel)]="donation.name"
+              name="name"
+            />
+          </div>
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="card">Card Number</label>
+            <input
+              id="card"
+              type="text"
+              required
+              placeholder="Card Number"
+              maxlength="19"
+              [(ngModel)]="donation.card"
+              name="card"
+            />
+          </div>
+          <div class="input-group expiry">
+            <label for="expiry">Expiry</label>
+            <input
+              id="expiry"
+              type="text"
+              required
+              placeholder="MM/YY"
+              maxlength="5"
+              [(ngModel)]="donation.expiry"
+              name="expiry"
+            />
+          </div>
+          <div class="input-group cvc">
+            <label for="cvc">CVC</label>
+            <input
+              id="cvc"
+              type="text"
+              required
+              placeholder="CVC"
+              maxlength="4"
+              [(ngModel)]="donation.cvc"
+              name="cvc"
+            />
+          </div>
+        </div>
+        <button class="btn btn-accent btn-block" type="submit">Pay Now</button>
+        <div class="secure-note">
+          <i class="fas fa-shield-alt"></i>
+          Your payment is protected with bank-level encryption.
+        </div>
+      </form>
+      <div class="alt-donation">
+        <p>Or donate via EFT:</p>
+        <div class="bank-details">
+          <strong>HE CARES FOUNDATION</strong><br />
+          Bank: Example Bank<br />
+          Acc No: 123456789<br />
+          Ref: Your Name + Donation
+        </div>
+      </div>
+    </div>
+
+    <!-- Essential goods donation tab -->
+    <div class="donate-info goods" *ngIf="selectedTab === 'goods'">
+      <h2 class="donate-title">
+        <i class="fas fa-box"></i>&nbsp;&nbsp;&nbsp;Donate Essential Goods
+      </h2>
+      <form
+        class="goods-donation-form"
+        (submit)="processGoodsDonation($event)"
+        autocomplete="off"
+      >
+        <div class="input-row">
+          <div class="input-group">
+            <label for="goods-name">Your Name</label>
+            <input
+              id="goods-name"
+              type="text"
+              required
+              [(ngModel)]="goodsDonation.name"
+              name="goods-name"
+              placeholder="Full Name"
+            />
+          </div>
+          <div class="input-group">
+            <label for="goods-email">Email</label>
+            <input
+              id="goods-email"
+              type="email"
+              required
+              [(ngModel)]="goodsDonation.email"
+              name="goods-email"
+              placeholder="Email Address"
+            />
+          </div>
+          <div class="input-group">
+            <label for="goods-phone">Phone</label>
+            <input
+              id="goods-phone"
+              type="text"
+              required
+              [(ngModel)]="goodsDonation.phone"
+              name="goods-phone"
+              placeholder="Phone Number"
+            />
+          </div>
+        </div>
+        <!-- Items to Donate (aligned in a single row, responsive) -->
+        <div class="input-group goods-align">
+          <label>Items to Donate</label>
+          <div class="goods-list">
+            <div class="goods-list-row">
+              <div
+                *ngFor="let item of goodsDonation.items; let i = index"
+                class="goods-item"
+              >
+                <input
+                  type="checkbox"
+                  [(ngModel)]="item.checked"
+                  name="goods-item-{{ i }}"
+                  id="goods-item-{{ i }}"
+                />
+                <label for="goods-item-{{ i }}">{{ item.label }}</label>
+                <input
+                  type="number"
+                  min="1"
+                  step="1"
+                  [disabled]="!item.checked"
+                  [ngModel]="item.quantity"
+                  (ngModelChange)="onQuantityInput(i, $event)"
+                  name="goods-qty-{{ i }}"
+                  class="goods-qty"
+                  style="width: 70px; text-align: center"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="goods-message">Message (optional)</label>
+          <textarea
+            id="goods-message"
+            [(ngModel)]="goodsDonation.message"
+            name="goods-message"
+            rows="2"
+            placeholder="Further instructions or questions"
+          ></textarea>
+        </div>
+        <button class="btn btn-accent btn-block" type="submit">
+          Send Donation Offer
+        </button>
+        <div class="secure-note">
+          <i class="fas fa-info-circle"></i>
+          We will contact you to coordinate collection/receiving of goods.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

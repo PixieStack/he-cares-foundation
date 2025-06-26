@@ -1,0 +1,480 @@
+<main class="home-page">
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-background">
+      <img
+        [src]="heroContent.backgroundImage"
+        alt="Unity and Support"
+        class="hero-bg-image"
+      />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content-wrapper">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-hands-helping"></i>
+            <span>A Movement That Cares</span>
+          </div>
+          <h1 class="hero-title">
+            <span class="highlight">HE CARES:</span><br />
+            {{ heroContent.title }}
+          </h1>
+          <p class="hero-subtitle">{{ heroContent.subtitle }}</p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">2,500+</span>
+              <span class="stat-label">Lives Impacted</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">75+</span>
+              <span class="stat-label">Communities Reached</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Emergency Support</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a [routerLink]="'/get-involved'" class="btn btn-primary btn-hero">
+              <i class="fas fa-heart"></i>
+              {{ heroContent.primaryCta }}
+            </a>
+            <a [routerLink]="'/impact'" class="btn btn-secondary btn-hero">
+              <i class="fas fa-chart-line"></i>
+              {{ heroContent.secondaryCta }}
+            </a>
+          </div>
+        </div>
+        <div class="hero-active-image">
+          <img
+            src="/assets/images/hero.webp"
+            alt="Active Hero Image"
+            class="active-img"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <button (click)="scrollToSection('mission')" class="scroll-down-btn">
+        <i class="fas fa-chevron-down"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section -->
+  <section id="mission" class="mission-section section animate-on-scroll">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-content">
+          <div class="section-header">
+            <span class="section-badge">OUR CALLING</span>
+            <h2>Why We Exist & Where We're Going</h2>
+            <div class="section-underline"></div>
+          </div>
+          <div class="mission-cards">
+            <div class="mission-card">
+              <div class="card-icon">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <h3>Our Mission</h3>
+              <p>
+                To protect and uplift vulnerable women and children by providing
+                access to safety, basic needs, psycho-social support, and
+                empowerment programs, while advocating for systemic change to
+                end gender-based violence and inequality.
+              </p>
+            </div>
+            <div class="mission-card">
+              <div class="card-icon">
+                <i class="fas fa-eye"></i>
+              </div>
+              <h3>Our Vision</h3>
+              <p>
+                A South Africa where every woman and child lives free from
+                violence, empowered with dignity, and has access to essential
+                resources for a healthy and hopeful future.
+              </p>
+            </div>
+            <div class="mission-card">
+              <div class="card-icon">
+                <i class="fas fa-heart"></i>
+              </div>
+              <h3>Our Values</h3>
+              <p>
+                Integrity, compassion, accountability, and unwavering commitment
+                to justice. We operate with transparency and deep understanding
+                of the challenges our beneficiaries face daily.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values Section -->
+  <section
+    id="values"
+    class="values-section section bg-light animate-on-scroll"
+  >
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">WHAT DRIVES US</span>
+        <h2>Our Core <span class="text-primary">Impact Areas</span></h2>
+        <div class="section-underline"></div>
+        <p class="section-description">
+          Every program we design addresses critical needs with measurable
+          outcomes and lasting impact.
+        </p>
+      </div>
+      <div class="values-grid">
+        <div
+          *ngFor="let value of coreValues; let i = index"
+          class="value-card animate-on-scroll"
+          [style.animation-delay.ms]="i * 200"
+        >
+          <div class="value-icon" [style.background-color]="value.color">
+            <i [class]="value.icon"></i>
+          </div>
+          <div class="value-content">
+            <h3>{{ value.title }}</h3>
+            <p>{{ value.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes a Man Section -->
+  <section
+    id="man-message"
+    class="man-message-section section animate-on-scroll"
+  >
+    <div class="container">
+      <div class="man-message-grid">
+        <div class="message-image">
+          <img
+            src="/assets/images/men_supporting.jpeg"
+            alt="Men supporting community"
+            class="message-img"
+          />
+          <div class="image-overlay">
+            <div class="overlay-content">
+              <i class="fas fa-quote-left"></i>
+              <p>{{ manMessage.quote }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="message-content">
+          <h2>{{ manMessage.question }}</h2>
+          <div class="quote-block">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p class="main-quote">{{ manMessage.quote }}</p>
+          </div>
+          <p class="message-explanation">{{ manMessage.explanation }}</p>
+          <div class="leadership-points">
+            <div class="point-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Taking Accountability for Our Communities</span>
+            </div>
+            <div class="point-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Being Visible Leaders in Advocacy</span>
+            </div>
+            <div class="point-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Standing Up for Those Who Need Protection</span>
+            </div>
+            <div class="point-item">
+              <i class="fas fa-check-circle"></i>
+              <span>Creating Safe Spaces Through Action</span>
+            </div>
+          </div>
+          <div class="message-cta">
+            <a routerLink="/get-involved" class="btn btn-primary">
+              <i class="fas fa-users"></i>
+              {{ manMessage.callToAction }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Highlight Section -->
+  <section
+    id="programs"
+    class="programs-section section bg-light animate-on-scroll"
+  >
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">HOW WE HELP</span>
+        <h2>Our <span class="text-primary">Impact Programs</span></h2>
+        <div class="section-underline"></div>
+        <p class="section-description">
+          Comprehensive support systems designed to address immediate needs and
+          create lasting change.
+        </p>
+      </div>
+      <div class="programs-grid">
+        <div
+          *ngFor="let program of programHighlights; let i = index"
+          class="program-card animate-on-scroll"
+          [style.animation-delay.ms]="i * 300"
+        >
+          <div class="program-header">
+            <div class="program-icon">
+              <i [class]="program.icon"></i>
+            </div>
+            <h3>{{ program.title }}</h3>
+          </div>
+          <p class="program-description">{{ program.description }}</p>
+          <div class="program-features">
+            <div *ngFor="let feature of program.features" class="feature-item">
+              <i class="fas fa-check"></i>
+              <span>{{ feature }}</span>
+            </div>
+          </div>
+          <a [routerLink]="[program.link]" class="program-link">
+            Explore Program <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="programs-cta">
+        <div class="cta-content">
+          <h3>Ready to Make a Real Difference?</h3>
+          <p>
+            Join thousands of South Africans working together to create safer
+            communities for women and children.
+          </p>
+          <div class="cta-buttons">
+            <a routerLink="/donate" class="btn btn-primary">
+              <i class="fas fa-heart"></i> Donate Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Statistics Section -->
+  <section id="impact" class="impact-section section animate-on-scroll">
+    <div class="impact-background">
+      <div class="impact-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge light">MEASURING SUCCESS</span>
+        <h2 class="text-white">
+          Our Growing <span class="text-accent">Impact</span>
+        </h2>
+        <div class="section-underline light"></div>
+        <p class="section-description text-white">
+          Real numbers representing real lives transformed and communities
+          strengthened.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div
+          *ngFor="let stat of impactStats; let i = index"
+          class="stat-card animate-on-scroll"
+          [style.animation-delay.ms]="i * 150"
+        >
+          <div class="stat-icon">
+            <i [class]="stat.icon"></i>
+          </div>
+          <div class="stat-content">
+            <span class="stat-number">{{ stat.value }}</span>
+            <h4 class="stat-label">{{ stat.label }}</h4>
+            <p class="stat-description">{{ stat.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="impact-cta">
+        <p class="impact-message">
+          <i class="fas fa-heart"></i>
+          Every number represents a life changed, a family protected, and a
+          community strengthened.
+        </p>
+        <a [routerLink]="'/impact'" class="btn btn-accent">
+          <i class="fas fa-chart-line"></i>
+          See Detailed Impact Report
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section
+    id="testimonials"
+    class="testimonials-section section bg-light animate-on-scroll"
+  >
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">VOICES OF HOPE</span>
+        <h2>Stories of <span class="text-primary">Transformation</span></h2>
+        <div class="section-underline"></div>
+        <p class="section-description">
+          Real stories from the brave women, children, and men whose lives have
+          been touched by our work.
+        </p>
+      </div>
+      <div class="testimonials-container">
+        <div class="testimonial-carousel">
+          <div
+            class="testimonial-slide"
+            *ngFor="let testimonial of testimonials; let i = index"
+            [class.active]="i === currentTestimonialIndex"
+          >
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <div class="testimonial-image">
+                  <div class="quote-decoration">
+                    <i class="fas fa-quote-left"></i>
+                  </div>
+                </div>
+                <div class="testimonial-text">
+                  <div class="rating">
+                    <i
+                      *ngFor="let star of [1, 2, 3, 4, 5]"
+                      class="fas fa-star"
+                    ></i>
+                  </div>
+                  <p class="testimonial-quote">{{ testimonial.content }}</p>
+                  <div class="testimonial-author">
+                    <h4>{{ testimonial.author }}</h4>
+                    <span class="author-role">{{ testimonial.role }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button (click)="previousTestimonial()" class="carousel-btn prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="carousel-dots">
+            <button
+              *ngFor="let testimonial of testimonials; let i = index"
+              (click)="goToTestimonial(i)"
+              class="dot"
+              [class.active]="i === currentTestimonialIndex"
+            ></button>
+          </div>
+          <button (click)="nextTestimonial()" class="carousel-btn next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq-section section animate-on-scroll">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">GET ANSWERS</span>
+        <h2>Frequently Asked <span class="text-primary">Questions</span></h2>
+        <div class="section-underline"></div>
+        <p class="section-description">
+          Everything you need to know about our mission, programs, and how you
+          can get involved.
+        </p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-list">
+          <div
+            *ngFor="let faq of faqs; let i = index"
+            class="faq-item"
+            [class.active]="faq.isOpen"
+          >
+            <button (click)="toggleFAQ(i)" class="faq-question">
+              <h3>{{ faq.question }}</h3>
+              <i class="fas fa-plus faq-icon" [class.rotated]="faq.isOpen"></i>
+            </button>
+            <div class="faq-answer" [class.open]="faq.isOpen">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-contact">
+          <div class="contact-card">
+            <h3>Still Have Questions?</h3>
+            <p>
+              Our team is here to help you understand how you can make a
+              difference.
+            </p>
+            <div class="contact-options">
+              <a [routerLink]="'/contact'" class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Contact Us
+              </a>
+              <a href="tel:+27681263127" class="btn btn-outline">
+                <i class="fas fa-phone"></i> Call Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="final-cta" class="final-cta-section section animate-on-scroll">
+    <div class="cta-background">
+      <div class="cta-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="cta-content">
+        <h2>Be Part of the Solution Today</h2>
+        <p class="cta-subtitle">
+          Every action matters. Every voice counts. Every donation saves lives.
+          Join the movement of South Africans creating a safer future for women
+          and children.
+        </p>
+        <div class="cta-stats">
+          <div class="cta-stat">
+            <span class="number">24/7</span>
+            <span class="label">Emergency Support</span>
+          </div>
+          <div class="cta-stat">
+            <span class="number">100%</span>
+            <span class="label">Donation Transparency</span>
+          </div>
+          <div class="cta-stat">
+            <span class="number">0%</span>
+            <span class="label">Tolerance for Violence</span>
+          </div>
+        </div>
+        <div class="cta-actions">
+          <a [routerLink]="'/donate'" class="btn btn-primary btn-large">
+            <i class="fas fa-heart"></i>
+            Donate & Transform Lives
+          </a>
+          <a routerLink="/get-involved" class="btn btn-secondary btn-large">
+            <i class="fas fa-users"></i>
+            Volunteer With Us
+          </a>
+        </div>
+        <p class="cta-note">
+          <i class="fas fa-shield-alt"></i>
+          Your contribution directly funds safe houses, education programs, and
+          emergency assistance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <button
+    *ngIf="showBackToTop"
+    (click)="scrollToTop()"
+    class="back-to-top-btn"
+    title="Back to Top"
+  >
+    <i class="fas fa-arrow-up"></i>
+  </button>
+</main>

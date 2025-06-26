@@ -1,0 +1,429 @@
+<div class="become-volunteer-page crisis-support-page">
+  <div class="hero-spacer"></div>
+  <div class="header-hero">
+    <div class="hero-content">
+      <span class="badge">VOLUNTEER</span>
+      <h1>Become a <span class="text-accent">Volunteer</span></h1>
+      <div class="hero-desc">
+        <strong>Make a real difference in women and children’s lives!</strong>
+        <ul>
+          <li>
+            Help at events, safe houses, school drives, or awareness campaigns.
+          </li>
+          <li>
+            Offer your unique skills: counseling, legal help, social media,
+            logistics, and more.
+          </li>
+          <li>
+            Flexible roles for all skills, ages 18+, all backgrounds welcome.
+          </li>
+        </ul>
+        <span
+          >All volunteers receive orientation, support, and the chance to grow
+          with us.</span
+        >
+      </div>
+      <div class="quick-cta">
+        <button class="btn-main" (click)="openForm()">
+          Apply Now to Volunteer
+        </button>
+      </div>
+      <div class="emergency-note">
+        <i class="fas fa-info-circle"></i>
+        <span
+          >Questions? <strong>Email: volunteer&#64;hecares.org</strong></span
+        >
+      </div>
+    </div>
+    <div class="hero-art">
+      <img
+        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=85"
+        alt="Become a Volunteer"
+      />
+    </div>
+  </div>
+
+  <!-- Popup Overlay -->
+  <div class="popup-backdrop" *ngIf="showPopup">
+    <div class="popup-card">
+      <button class="popup-close" (click)="closePopup()" aria-label="Close">
+        &times;
+      </button>
+      <div class="popup-header">
+        <i class="fas fa-check-circle"></i>
+        <h2>Application Sent!</h2>
+      </div>
+      <div class="popup-content">
+        <p>
+          Thank you, <strong>{{ popupData.name }}</strong
+          >! Your volunteer application has been received. Here are your
+          details:
+        </p>
+        <table>
+          <tr>
+            <td><b>Reference:</b></td>
+            <td class="ref">{{ popupData.reference }}</td>
+          </tr>
+          <tr>
+            <td><b>Name:</b></td>
+            <td>{{ popupData.name }}</td>
+          </tr>
+          <tr>
+            <td><b>Email:</b></td>
+            <td>{{ popupData.email }}</td>
+          </tr>
+          <tr>
+            <td><b>Areas:</b></td>
+            <td>{{ popupData.areas?.join(", ") }}</td>
+          </tr>
+          <tr>
+            <td><b>Availability:</b></td>
+            <td>{{ popupData.availability?.join(", ") }}</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top"><b>Message:</b></td>
+            <td style="white-space: pre-line">{{ popupData.motivation }}</td>
+          </tr>
+          <tr *ngIf="popupData.files?.length">
+            <td style="vertical-align: top"><b>Attachments:</b></td>
+            <td>
+              <ul>
+                <li *ngFor="let att of popupData.files">{{ att }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <p class="popup-hint">
+          Please check your email for a receipt and keep your reference number
+          for future communication.
+        </p>
+      </div>
+      <button class="popup-action" (click)="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showForm">
+    <div class="modal-form">
+      <button class="close-btn" (click)="closeForm()" aria-label="Close">
+        &times;
+      </button>
+      <h2>Volunteer Application</h2>
+      <div class="form-step-indicator">
+        <span [class.active]="step === 1">1</span>
+        <span class="line"></span>
+        <span [class.active]="step === 2">2</span>
+      </div>
+      <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()" novalidate>
+        <div *ngIf="step === 1">
+          <div class="form-row">
+            <label>
+              Full Name *
+              <input
+                formControlName="name"
+                type="text"
+                [class.invalid]="
+                  submitted && volunteerForm.get('name')?.invalid
+                "
+                autocomplete="name"
+              />
+            </label>
+            <label>
+              Age *
+              <input
+                formControlName="age"
+                type="number"
+                min="18"
+                max="100"
+                [class.invalid]="submitted && volunteerForm.get('age')?.invalid"
+                autocomplete="age"
+              />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              Phone/WhatsApp *
+              <input
+                formControlName="contact"
+                type="text"
+                [class.invalid]="
+                  submitted && volunteerForm.get('contact')?.invalid
+                "
+                autocomplete="tel"
+              />
+            </label>
+            <label>
+              Email *
+              <input
+                formControlName="email"
+                type="email"
+                [class.invalid]="
+                  submitted && volunteerForm.get('email')?.invalid
+                "
+                autocomplete="email"
+              />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              City/Suburb *
+              <input
+                formControlName="location"
+                type="text"
+                [class.invalid]="
+                  submitted && volunteerForm.get('location')?.invalid
+                "
+                autocomplete="address-level2"
+              />
+            </label>
+            <label>
+              Languages Spoken *
+              <input
+                formControlName="languages"
+                type="text"
+                [class.invalid]="
+                  submitted && volunteerForm.get('languages')?.invalid
+                "
+                placeholder="e.g. English, Zulu, Xhosa"
+              />
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              Occupation/Student Status *
+              <input
+                formControlName="occupation"
+                type="text"
+                [class.invalid]="
+                  submitted && volunteerForm.get('occupation')?.invalid
+                "
+                placeholder="e.g. Student, Social Worker, Teacher"
+              />
+            </label>
+            <label>
+              Emergency Contact Name & Number *
+              <input
+                formControlName="emergencyContact"
+                type="text"
+                [class.invalid]="
+                  submitted && volunteerForm.get('emergencyContact')?.invalid
+                "
+                placeholder="Full name & phone"
+              />
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-main" (click)="nextStep()">
+              Next
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="step === 2">
+          <div class="form-row checkbox-group">
+            <div class="form-label">Areas You Can Help With *</div>
+            <div class="checkboxes-grid">
+              <label *ngFor="let area of areasOfInterest">
+                <input
+                  type="checkbox"
+                  [checked]="volunteerForm.get('areas')?.value?.includes(area)"
+                  (change)="toggleArea(area)"
+                />
+                {{ area }}
+              </label>
+            </div>
+            <div
+              class="error-msg"
+              *ngIf="submitted && volunteerForm.get('areas')?.invalid"
+            >
+              Please select at least one area
+            </div>
+          </div>
+          <div class="form-row">
+            <label>
+              Relevant Skills/Qualifications *
+              <textarea
+                formControlName="experience"
+                rows="3"
+                maxlength="400"
+                [class.invalid]="
+                  submitted && volunteerForm.get('experience')?.invalid
+                "
+                placeholder="Share your background, qualifications, or training (max 400 chars)"
+              ></textarea>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              Motivation - Why do you want to volunteer with us? *
+              <textarea
+                formControlName="motivation"
+                rows="3"
+                maxlength="400"
+                [class.invalid]="
+                  submitted && volunteerForm.get('motivation')?.invalid
+                "
+                placeholder="Tell us why you want to join (max 400 chars)"
+              ></textarea>
+            </label>
+          </div>
+          <div class="form-row checkbox-group">
+            <div class="form-label">Availability *</div>
+            <div class="checkboxes-grid">
+              <label *ngFor="let slot of availabilityOptions">
+                <input
+                  type="checkbox"
+                  [checked]="
+                    volunteerForm.get('availability')?.value?.includes(slot)
+                  "
+                  (change)="toggleAvailability(slot)"
+                />
+                {{ slot }}
+              </label>
+            </div>
+            <div
+              class="error-msg"
+              *ngIf="submitted && volunteerForm.get('availability')?.invalid"
+            >
+              Please select at least one slot
+            </div>
+          </div>
+          <div class="form-row">
+            <label>
+              Reference(s) (name & contact) *
+              <textarea
+                formControlName="references"
+                rows="2"
+                maxlength="200"
+                [class.invalid]="
+                  submitted && volunteerForm.get('references')?.invalid
+                "
+                placeholder="Please provide at least one reference (max 200 chars)"
+              ></textarea>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              Upload CV, certificate, or police clearance (optional)
+              <input
+                type="file"
+                (change)="onFileChange($event)"
+                multiple
+                accept=".pdf,.doc,.jpg,.png"
+              />
+              <ul class="attachments-list" *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles; let i = index">
+                  {{ file.name }}
+                  <span
+                    class="remove"
+                    (click)="removeAttachment(i)"
+                    title="Remove"
+                    >&times;</span
+                  >
+                </li>
+              </ul>
+            </label>
+          </div>
+          <div class="form-row consent">
+            <label>
+              <input
+                formControlName="consent"
+                type="checkbox"
+                [class.invalid]="
+                  submitted && volunteerForm.get('consent')?.invalid
+                "
+              />
+              I confirm the above information is correct and consent to
+              background checks if required. *
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn-alt" (click)="prevStep()">
+              Back
+            </button>
+            <button
+              type="submit"
+              class="btn-main"
+              [disabled]="volunteerForm.pending"
+            >
+              Send Application
+            </button>
+          </div>
+          <div class="success-msg" *ngIf="successMsg">{{ successMsg }}</div>
+          <div class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <section class="info-section">
+    <div class="info-grid">
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-hands-helping"></i></div>
+        <h2>What Volunteers Do</h2>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Event setup and support</li>
+          <li>
+            <i class="fas fa-check-circle"></i> Community outreach & education
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> School supply & pad drives
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Safe house and shelter support
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Admin, fundraising, logistics
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-user-friends"></i></div>
+        <h2>Why Volunteer?</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Make real impact in your
+            community
+          </li>
+          <li><i class="fas fa-check-circle"></i> Learn new skills and grow</li>
+          <li>
+            <i class="fas fa-check-circle"></i> Meet passionate, like-minded
+            people
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Flexible commitment and roles
+          </li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <div class="info-icon"><i class="fas fa-award"></i></div>
+        <h2>Benefits</h2>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Reference letters & certificates
+          </li>
+          <li><i class="fas fa-check-circle"></i> Training and mentorship</li>
+          <li>
+            <i class="fas fa-check-circle"></i> Volunteer appreciation events
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <h2><i class="fas fa-question-circle"></i> Volunteer FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let faq of faqs; let i = index">
+        <button class="faq-question" (click)="toggleFAQ(i)">
+          <span>{{ faq.question }}</span>
+          <i
+            [class]="faq.isOpen ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"
+          ></i>
+        </button>
+        <div class="faq-answer" *ngIf="faq.isOpen">
+          {{ faq.answer }}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

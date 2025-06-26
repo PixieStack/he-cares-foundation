@@ -1,0 +1,200 @@
+<section class="contact-wrapper">
+  <h1>Contact Us</h1>
+
+  <!-- Popup Overlay -->
+  <div class="popup-backdrop" *ngIf="showPopup">
+    <div class="popup-card">
+      <button class="popup-close" (click)="closePopup()" aria-label="Close">
+        &times;
+      </button>
+      <div class="popup-header">
+        <i class="fas fa-check-circle"></i>
+        <h2>Query Sent Successfully!</h2>
+      </div>
+      <div class="popup-content">
+        <p>
+          Thank you, <strong>{{ popupData.name }}</strong
+          >! Your message has been sent to us. Here are the details you
+          submitted:
+        </p>
+        <table>
+          <tr>
+            <td><b>Reference:</b></td>
+            <td class="ref">{{ popupData.reference }}</td>
+          </tr>
+          <tr>
+            <td><b>Name:</b></td>
+            <td>{{ popupData.name }}</td>
+          </tr>
+          <tr>
+            <td><b>Email:</b></td>
+            <td>{{ popupData.email }}</td>
+          </tr>
+          <tr>
+            <td><b>Topic:</b></td>
+            <td>{{ popupData.topic }}</td>
+          </tr>
+          <tr>
+            <td><b>Phone:</b></td>
+            <td>{{ popupData.phone || "N/A" }}</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top"><b>Message:</b></td>
+            <td style="white-space: pre-line">{{ popupData.message }}</td>
+          </tr>
+          <tr *ngIf="popupData.attachments?.length">
+            <td style="vertical-align: top"><b>Attachments:</b></td>
+            <td>
+              <ul>
+                <li *ngFor="let att of popupData.attachments">{{ att }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <p class="popup-hint">
+          Please check your email for a receipt and keep your reference number
+          for future communication.
+        </p>
+      </div>
+      <button class="popup-action" (click)="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- Hide form when popup is open -->
+  <form
+    *ngIf="!showPopup"
+    [formGroup]="contactForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div class="form-row">
+      <label for="name">Name<span>*</span></label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        [class.invalid]="submitted && contactForm.controls['name'].invalid"
+      />
+      <div
+        class="error"
+        *ngIf="submitted && contactForm.controls['name'].invalid"
+      >
+        Name is required.
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="email">Email<span>*</span></label>
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        [class.invalid]="submitted && contactForm.controls['email'].invalid"
+      />
+      <div
+        class="error"
+        *ngIf="submitted && contactForm.controls['email'].invalid"
+      >
+        Valid email is required.
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="topic">Subject / Topic<span>*</span></label>
+      <select
+        id="topic"
+        formControlName="topic"
+        [class.invalid]="submitted && contactForm.controls['topic'].invalid"
+      >
+        <option value="">Select a topic</option>
+        <option *ngFor="let t of topics" [value]="t">{{ t }}</option>
+      </select>
+      <div
+        class="error"
+        *ngIf="submitted && contactForm.controls['topic'].invalid"
+      >
+        Topic is required.
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="message">Message<span>*</span></label>
+      <textarea
+        id="message"
+        rows="4"
+        formControlName="message"
+        [class.invalid]="submitted && contactForm.controls['message'].invalid"
+      ></textarea>
+      <div
+        class="error"
+        *ngIf="submitted && contactForm.controls['message'].invalid"
+      >
+        Message is required.
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="phone">Phone (optional)</label>
+      <input id="phone" type="tel" formControlName="phone" />
+    </div>
+    <div class="form-row">
+      <label for="attachment">Attachments (optional)</label>
+      <input
+        id="attachment"
+        type="file"
+        (change)="onFileChange($event)"
+        multiple
+      />
+      <ul class="attachments-list" *ngIf="attachments.length">
+        <li *ngFor="let file of attachments; let i = index">
+          {{ file.name }}
+          <span class="remove" (click)="removeAttachment(i)" title="Remove"
+            >&times;</span
+          >
+        </li>
+      </ul>
+    </div>
+    <button type="submit" [disabled]="loading">
+      {{ loading ? "Sending..." : "Send Message" }}
+    </button>
+    <div class="form-messages">
+      <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+    </div>
+  </form>
+
+  <div class="contact-info">
+    <h2>Direct Contact</h2>
+    <p>
+      <strong>Email:</strong>
+      <a href="mailto:hecaresmovement@africa.com"
+        >hecaresmovement&#64;africa.com</a
+      >
+    </p>
+    <p><strong>Phone:</strong> <a href="tel:+1234567890">+1 234 567 890</a></p>
+    <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+    <p><strong>Office Hours:</strong> Mon–Fri, 09:00–17:00</p>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=..."
+        width="100%"
+        height="180"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </div>
+    <div class="social-links">
+      <a href="https://facebook.com/" target="_blank" aria-label="Facebook"
+        ><i class="fab fa-facebook"></i
+      ></a>
+      <a href="https://twitter.com/" target="_blank" aria-label="Twitter"
+        ><i class="fab fa-twitter"></i
+      ></a>
+      <a href="https://instagram.com/" target="_blank" aria-label="Instagram"
+        ><i class="fab fa-instagram"></i
+      ></a>
+      <a href="https://tiktok.com/" target="_blank" aria-label="TikTok"
+        ><i class="fab fa-tiktok"></i
+      ></a>
+      <a href="https://wa.me/1234567890" target="_blank" aria-label="WhatsApp"
+        ><i class="fab fa-whatsapp"></i
+      ></a>
+    </div>
+  </div>
+</section>
