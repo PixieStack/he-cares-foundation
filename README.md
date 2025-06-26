@@ -36,103 +36,160 @@ The system will provide crisis support, resources, education, and a vibrant comm
 
 Below are screenshots from the primary pages, in the order a user might encounter them while scrolling and navigating the site.
 
-_All images are located in_ `frontend/src/assets/images/page images/`
+_All images are located in [`frontend/src/assets/images/page images/`](https://github.com/PixieStack/he-cares-foundation/tree/master/frontend/src/assets/images/page%20images)_
 
 <table>
   <tr>
-    <td align="center"><b>Landing Page</b></td>
-    <td align="center"><b>Our Calling</b></td>
-    <td align="center"><b>Our Drive</b></td>
+    <th>Landing Page</th>
+    <th>Our Calling</th>
+    <th>Our Drive</th>
   </tr>
   <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Landing%20Page.jpg" alt="Landing Page" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Our%20Calling.jpg" alt="Our Calling" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Our%20Drive.jpg" alt="Our Drive" width="220"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/Landing%20Page.png" alt="Landing Page" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/our%20calling.png" alt="Our Calling" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/our%20drive.png" alt="Our Drive" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><b>Difference</b></td>
-    <td align="center"><b>Programs</b></td>
-    <td align="center"><b>Crisis Support</b></td>
+    <th>Difference</th>
+    <th>Programs</th>
+    <th>Crisis Support 1</th>
   </tr>
   <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Difference.jpg" alt="Difference" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Programs.jpg" alt="Programs" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Crisis%202.jpg" alt="Crisis Support" width="220"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/difference.png" alt="Difference" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/programs.png" alt="Programs" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/crisis%201.png" alt="Crisis Support 1" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><b>Education Empowerment</b></td>
-    <td align="center"><b>Advocacy</b></td>
-    <td align="center"><b>Volunteer</b></td>
+    <th>Crisis Support 2</th>
+    <th>Crisis Support 3</th>
+    <th>Crisis Form</th>
   </tr>
   <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Education%202.jpg" alt="Education Empowerment" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Advocacy.jpg" alt="Advocacy" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Volunteer%201.jpg" alt="Volunteer" width="220"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/crisis%202.png" alt="Crisis Support 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/crisis%203.png" alt="Crisis Support 3" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/crisis%20form%201.png" alt="Crisis Form" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><b>Donate</b></td>
-    <td align="center"><b>Fundraiser</b></td>
-    <td align="center"><b>Partners</b></td>
+    <th>Education 1</th>
+    <th>Education 2</th>
+    <th>Education Form 1</th>
   </tr>
   <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Donate%201.jpg" alt="Donate" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Fundraiser.jpg" alt="Fundraiser" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Partners.jpg" alt="Partners" width="220"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/education%201.png" alt="Education 1" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/education%202.png" alt="Education 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/education%20form%201.png" alt="Education Form 1" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><b>Impact & Testimonials</b></td>
-    <td align="center"><b>Join the Movement</b></td>
-    <td align="center"><b>About Us</b></td>
+    <th>Education Form 2</th>
+    <th>Advocacy 1</th>
+    <th>Advocacy 2</th>
   </tr>
   <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Impact%201.jpg" alt="Impact" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Join%202.jpg" alt="Join the Movement" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/About%20Us.jpg" alt="About Us" width="220"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/education%20form%202.png" alt="Education Form 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/advocacy%201.png" alt="Advocacy 1" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/advocacy%202.png" alt="Advocacy 2" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><b>Contact</b></td>
-    <td align="center"><b>FAQ</b></td>
-    <td align="center"><b>Disclosure</b></td>
+    <th>Advocacy 3</th>
+    <th>Volunteer 1</th>
+    <th>Volunteer 2</th>
   </tr>
   <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Contact.jpg" alt="Contact" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/FAQ.jpg" alt="FAQ" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/Disclosure.jpg" alt="Disclosure" width="220"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/advocacy%203.png" alt="Advocacy 3" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/volunteer%201.png" alt="Volunteer 1" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/volunteer%202.png" alt="Volunteer 2" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><b>Duration</b></td>
-    <td align="center"><b>What Makes A.</b></td>
+    <th>Volunteer Form</th>
+    <th>Donate 1</th>
+    <th>Donate 2</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/volunteer%20form.png" alt="Volunteer Form" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/donate%201.png" alt="Donate 1" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/donate%202.png" alt="Donate 2" width="200"/></td>
+  </tr>
+  <tr>
+    <th>Fundraiser</th>
+    <th>Fundraiser Form</th>
+    <th>Partners 1</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/fund%20raiser.png" alt="Fundraiser" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/fund%20raiser%20form.png" alt="Fundraiser Form" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/partners%201.png" alt="Partners 1" width="200"/></td>
+  </tr>
+  <tr>
+    <th>Partners 2</th>
+    <th>Partners 3</th>
+    <th>Partnets 2</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/partners%202.png" alt="Partners 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/partners%203.png" alt="Partners 3" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/partnets%202.png" alt="Partnets 2" width="200"/></td>
+  </tr>
+  <tr>
+    <th>Impact 1</th>
+    <th>Impact 2</th>
+    <th>Testimonials</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/impact%201.png" alt="Impact 1" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/impact%202.png" alt="Impact 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/testimonials.png" alt="Testimonials" width="200"/></td>
+  </tr>
+  <tr>
+    <th>Join 1</th>
+    <th>Join 2</th>
+    <th>About Us 1</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/join%201.png" alt="Join 1" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/join%202.png" alt="Join 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/about%20us%201.png" alt="About Us 1" width="200"/></td>
+  </tr>
+  <tr>
+    <th>About Us 2</th>
+    <th>About Us 3</th>
+    <th>About Us 4</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/about%20us%202.png" alt="About Us 2" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/about%20us%203.png" alt="About Us 3" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/about%20us%204.png" alt="About Us 4" width="200"/></td>
+  </tr>
+  <tr>
+    <th>About Us 5</th>
+    <th>Founder</th>
+    <th>Founder About Us</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/about%20us%205.png" alt="About Us 5" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/founder.png" alt="Founder" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/founder_about_us.png" alt="Founder About Us" width="200"/></td>
+  </tr>
+  <tr>
+    <th>Contact</th>
+    <th>FAQ</th>
+    <th>Footer</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/contact%20.png" alt="Contact" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/FAQs.png" alt="FAQ" width="200"/></td>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/footer.png" alt="Footer" width="200"/></td>
+  </tr>
+  <tr>
+    <th>What Makes a Man</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/PixieStack/he-cares-foundation/raw/master/frontend/src/assets/images/page%20images/what%20makes%20a%20man.png" alt="What Makes a Man" width="200"/></td>
     <td></td>
-  </tr>
-  <tr>
-    <td><img src="frontend/src/assets/images/page%20images/Duration.jpg" alt="Duration" width="220"/></td>
-    <td><img src="frontend/src/assets/images/page%20images/What%20Makes%20A..jpg" alt="What Makes A." width="220"/></td>
     <td></td>
   </tr>
 </table>
-
-### Image Descriptions
-
-- **Landing Page:** Mission and invitation to join HE CARES.
-- **Our Calling:** The organization's mission, vision, and values.
-- **Our Drive:** Motivational section highlighting the movement's purpose.
-- **Difference:** What sets HE CARES apart.
-- **Programs:** Overview of all core programs.
-- **Crisis Support:** Info on crisis and referral services.
-- **Education Empowerment:** Details about education and skills programs.
-- **Advocacy:** Community engagement and advocacy efforts.
-- **Volunteer:** Volunteer opportunities and sign-up.
-- **Donate:** Ways to donate and their impact.
-- **Fundraiser:** Start or join a fundraising effort.
-- **Partners:** School and corporate partnerships.
-- **Impact & Testimonials:** Stories of change and real-world results.
-- **Join the Movement:** How users can get involved.
-- **About Us:** Organization background.
-- **Contact:** Contact form and info.
-- **FAQ:** Frequently asked questions.
-- **Disclosure:** Transparency and disclosures.
-- **Duration:** Program timelines.
-- **What Makes A.:** Message about authentic leadership and masculinity.
 
 ---
 
@@ -158,16 +215,16 @@ _All images are located in_ `frontend/src/assets/images/page images/`
 ### To preview the UI:
 
 1. Clone the repository:
-   ```bash
-   git clone <repo-url>
-   cd he-cares-foundation
-   ```
+    ```bash
+    git clone git@github.com:PixieStack/he-cares-foundation.git
+    cd he-cares-foundation
+    ```
 2. Run the frontend:
-   ```bash
-   cd frontend
-   npm install
-   ng serve --open
-   ```
+    ```bash
+    cd frontend
+    npm install
+    ng serve --open
+    ```
 
 ---
 
