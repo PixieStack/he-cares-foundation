@@ -79,7 +79,7 @@ export class ContactComponent {
     });
 
     this.http
-      .post<any>('http://localhost:8000/api/contact', formData)
+      .post<any>('/api/contact', formData)
       .subscribe({
         next: (res) => {
           // Show the popup with the details
