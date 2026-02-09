@@ -4,9 +4,9 @@ import smtplib
 from email.message import EmailMessage
 
 # Load .env file
-load_dotenv(dotenv_path="C:/Users/thwal/Desktop/Portfolio/he-cares-foundation/backend/.env")
+load_dotenv()
 
-EMAIL_TO = os.getenv("EMAIL_TO")
+EMAIL_TO = os.getenv("EMAIL_TO", "admin@hecaresfoundation.org")
 EMAIL_FROM = "no-reply@hecaresfoundation.org"
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
