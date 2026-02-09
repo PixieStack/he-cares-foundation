@@ -285,11 +285,12 @@
 
 @media (max-width: 600px) {
   .donate-card {
-    padding: 1.1rem 0.3rem;
+    padding: 1.5rem 1rem;
     max-width: 100vw;
+    margin: 1rem;
   }
   .donate-main-title {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   .input-row {
     flex-direction: column;
@@ -303,5 +304,212 @@
     flex-basis: 100% !important;
     min-width: 90px;
     max-width: 100%;
+  }
+  .donate-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+// Popup Styles
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-card {
+  background: $white;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 60px rgba($hcf-blue-dark, 0.3);
+  max-width: 600px;
+  width: 100%;
+  padding: 2.5rem;
+  position: relative;
+  animation: slideUp 0.4s ease;
+  
+  @media (max-width: 600px) {
+    padding: 2rem 1.5rem;
+    max-width: 90vw;
+  }
+}
+
+.popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: $hcf-text-grey;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+  
+  &:hover {
+    background: rgba($hcf-orange, 0.1);
+    color: $hcf-orange;
+    transform: rotate(90deg);
+  }
+}
+
+.popup-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  
+  i {
+    font-size: 4rem;
+    color: $hcf-gold;
+    margin-bottom: 1rem;
+    display: block;
+    animation: scaleIn 0.5s ease;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: $hcf-blue-dark;
+    margin: 0;
+  }
+}
+
+.popup-content {
+  p {
+    font-size: 1.1rem;
+    color: $hcf-text-grey;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    
+    strong {
+      color: $hcf-blue-dark;
+    }
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    
+    tr {
+      border-bottom: 1px solid #e5e7eb;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
+    td {
+      padding: 0.75rem 0;
+      vertical-align: top;
+      
+      &:first-child {
+        color: $hcf-text-grey;
+        font-weight: 600;
+        width: 130px;
+      }
+      
+      &:last-child {
+        color: $hcf-text-dark;
+      }
+      
+      &.ref {
+        font-weight: 800;
+        color: $hcf-blue-dark;
+        font-size: 1.1rem;
+      }
+    }
+    
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      
+      li {
+        padding: 0.25rem 0;
+      }
+    }
+  }
+}
+
+.popup-hint {
+  background: rgba($hcf-gold, 0.1);
+  border-left: 4px solid $hcf-gold;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  color: $hcf-text-dark;
+  margin-top: 1rem;
+}
+
+.popup-action {
+  width: 100%;
+  background: $hcf-blue-dark;
+  color: $white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+  
+  &:hover {
+    background: $hcf-orange;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($hcf-orange, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
