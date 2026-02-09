@@ -1,5 +1,59 @@
 <div class="donate-section">
-  <div class="donate-card">
+  <!-- Success Popup -->
+  <div class="popup-backdrop" *ngIf="showPopup">
+    <div class="popup-card">
+      <button class="popup-close" (click)="closePopup()" aria-label="Close">
+        &times;
+      </button>
+      <div class="popup-header">
+        <i class="fas fa-check-circle"></i>
+        <h2>Donation Successful!</h2>
+      </div>
+      <div class="popup-content">
+        <p *ngIf="popupData?.type === 'money'">
+          Thank you, <strong>{{ popupData.name }}</strong
+          >! Your generous donation has been received.
+        </p>
+        <p *ngIf="popupData?.type === 'goods'">
+          Thank you, <strong>{{ popupData.name }}</strong
+          >! Your donation offer has been received. We will contact you soon to arrange collection.
+        </p>
+        <table>
+          <tr>
+            <td><b>Reference:</b></td>
+            <td class="ref">{{ popupData?.reference }}</td>
+          </tr>
+          <tr *ngIf="popupData?.type === 'money'">
+            <td><b>Amount:</b></td>
+            <td>ZAR {{ popupData?.amount }}</td>
+          </tr>
+          <tr *ngIf="popupData?.type === 'goods'">
+            <td><b>Email:</b></td>
+            <td>{{ popupData?.email }}</td>
+          </tr>
+          <tr *ngIf="popupData?.type === 'goods'">
+            <td><b>Phone:</b></td>
+            <td>{{ popupData?.phone }}</td>
+          </tr>
+          <tr *ngIf="popupData?.type === 'goods'">
+            <td style="vertical-align: top"><b>Items:</b></td>
+            <td>
+              <ul>
+                <li *ngFor="let item of popupData?.items">{{ item }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+        <p class="popup-hint">
+          Please check your email for confirmation and keep your reference number
+          for future communication.
+        </p>
+      </div>
+      <button class="popup-action" (click)="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <div class="donate-card" *ngIf="!showPopup">
     <h1 class="donate-main-title">
       <i class="fas fa-heart text-accent"></i>
       Donate to He Cares Foundation
@@ -9,6 +63,7 @@
         class="tab-btn"
         [class.active]="selectedTab === 'money'"
         (click)="selectedTab = 'money'"
+        data-testid="tab-financial-support"
       >
         <i class="fas fa-credit-card"></i> Financial Support
       </button>
@@ -16,6 +71,7 @@
         class="tab-btn"
         [class.active]="selectedTab === 'goods'"
         (click)="selectedTab = 'goods'"
+        data-testid="tab-donate-goods"
       >
         <i class="fas fa-box"></i> Donate Essential Goods
       </button>
@@ -30,10 +86,11 @@
         class="payment-gateway"
         (submit)="processDonation($event)"
         autocomplete="off"
+        data-testid="financial-donation-form"
       >
         <div class="input-row">
           <div class="input-group">
-            <label for="donation-amount">Amount (ZAR)</label>
+            <label for="donation-amount">Amount (ZAR) *</label>
             <input
               id="donation-amount"
               type="number"
@@ -42,10 +99,11 @@
               placeholder="Enter amount"
               [(ngModel)]="donation.amount"
               name="amount"
+              data-testid="donation-amount-input"
             />
           </div>
           <div class="input-group">
-            <label for="account-name">Cardholder Name</label>
+            <label for="account-name">Cardholder Name *</label>
             <input
               id="account-name"
               type="text"
@@ -53,12 +111,13 @@
               placeholder="Your Name"
               [(ngModel)]="donation.name"
               name="name"
+              data-testid="cardholder-name-input"
             />
           </div>
         </div>
         <div class="input-row">
           <div class="input-group">
-            <label for="card">Card Number</label>
+            <label for="card">Card Number *</label>
             <input
               id="card"
               type="text"
@@ -67,10 +126,11 @@
               maxlength="19"
               [(ngModel)]="donation.card"
               name="card"
+              data-testid="card-number-input"
             />
           </div>
           <div class="input-group expiry">
-            <label for="expiry">Expiry</label>
+            <label for="expiry">Expiry *</label>
             <input
               id="expiry"
               type="text"
@@ -79,10 +139,11 @@
               maxlength="5"
               [(ngModel)]="donation.expiry"
               name="expiry"
+              data-testid="card-expiry-input"
             />
           </div>
           <div class="input-group cvc">
-            <label for="cvc">CVC</label>
+            <label for="cvc">CVC *</label>
             <input
               id="cvc"
               type="text"
@@ -91,10 +152,19 @@
               maxlength="4"
               [(ngModel)]="donation.cvc"
               name="cvc"
+              data-testid="card-cvc-input"
             />
           </div>
         </div>
-        <button class="btn btn-accent btn-block" type="submit">Pay Now</button>
+        <button 
+          class="btn btn-accent btn-block" 
+          type="submit" 
+          [disabled]="loading"
+          data-testid="pay-now-button"
+        >
+          <i class="fas fa-lock"></i>
+          {{ loading ? 'Processing...' : 'Pay Now' }}
+        </button>
         <div class="secure-note">
           <i class="fas fa-shield-alt"></i>
           Your payment is protected with bank-level encryption.
@@ -120,10 +190,11 @@
         class="goods-donation-form"
         (submit)="processGoodsDonation($event)"
         autocomplete="off"
+        data-testid="goods-donation-form"
       >
         <div class="input-row">
           <div class="input-group">
-            <label for="goods-name">Your Name</label>
+            <label for="goods-name">Your Name *</label>
             <input
               id="goods-name"
               type="text"
@@ -131,10 +202,11 @@
               [(ngModel)]="goodsDonation.name"
               name="goods-name"
               placeholder="Full Name"
+              data-testid="goods-donor-name"
             />
           </div>
           <div class="input-group">
-            <label for="goods-email">Email</label>
+            <label for="goods-email">Email *</label>
             <input
               id="goods-email"
               type="email"
@@ -142,10 +214,11 @@
               [(ngModel)]="goodsDonation.email"
               name="goods-email"
               placeholder="Email Address"
+              data-testid="goods-donor-email"
             />
           </div>
           <div class="input-group">
-            <label for="goods-phone">Phone</label>
+            <label for="goods-phone">Phone *</label>
             <input
               id="goods-phone"
               type="text"
@@ -153,12 +226,13 @@
               [(ngModel)]="goodsDonation.phone"
               name="goods-phone"
               placeholder="Phone Number"
+              data-testid="goods-donor-phone"
             />
           </div>
         </div>
         <!-- Items to Donate (aligned in a single row, responsive) -->
         <div class="input-group goods-align">
-          <label>Items to Donate</label>
+          <label>Items to Donate *</label>
           <div class="goods-list">
             <div class="goods-list-row">
               <div
@@ -170,6 +244,7 @@
                   [(ngModel)]="item.checked"
                   name="goods-item-{{ i }}"
                   id="goods-item-{{ i }}"
+                  [attr.data-testid]="'goods-item-' + i"
                 />
                 <label for="goods-item-{{ i }}">{{ item.label }}</label>
                 <input
@@ -182,6 +257,7 @@
                   name="goods-qty-{{ i }}"
                   class="goods-qty"
                   style="width: 70px; text-align: center"
+                  [attr.data-testid]="'goods-qty-' + i"
                 />
               </div>
             </div>
@@ -195,10 +271,17 @@
             name="goods-message"
             rows="2"
             placeholder="Further instructions or questions"
+            data-testid="goods-message"
           ></textarea>
         </div>
-        <button class="btn btn-accent btn-block" type="submit">
-          Send Donation Offer
+        <button 
+          class="btn btn-accent btn-block" 
+          type="submit" 
+          [disabled]="loading"
+          data-testid="submit-goods-donation"
+        >
+          <i class="fas fa-paper-plane"></i>
+          {{ loading ? 'Sending...' : 'Send Donation Offer' }}
         </button>
         <div class="secure-note">
           <i class="fas fa-info-circle"></i>
