@@ -411,7 +411,9 @@ def main():
         tester.test_community_advocacy_form,
         tester.test_crisis_support_form,
         tester.test_fundraiser_form,
-        tester.test_corporate_partnership_form
+        tester.test_corporate_partnership_form,
+        tester.test_spread_word_story_form,
+        tester.test_spread_word_challenge_form
     ]
     
     for test in tests:
