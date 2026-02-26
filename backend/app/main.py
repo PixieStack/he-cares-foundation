@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import contact, volunteers, donations
+from app.routers import contact, volunteers, donations, forms
 
 app = FastAPI(
     title="He Cares Foundation API",
@@ -21,6 +21,7 @@ app.add_middleware(
 app.include_router(contact.router)
 app.include_router(volunteers.router)
 app.include_router(donations.router)
+app.include_router(forms.router)
 
 @app.get("/")
 async def root():
