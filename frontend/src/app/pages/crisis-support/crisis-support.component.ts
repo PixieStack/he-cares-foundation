@@ -66,7 +66,7 @@ export class CrisisSupportComponent {
     },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.supportForm = this.fb.group({
       name: ['', Validators.required],
       contact: ['', [Validators.required]],
@@ -87,7 +87,9 @@ export class CrisisSupportComponent {
     this.supportForm.get('files')?.setValue(null);
     this.uploadedFiles = [];
     this.successMsg = '';
+    this.errorMsg = '';
     this.submitted = false;
+    this.loading = false;
     this.supportForm.reset({
       referralType,
       crisisType: [],
@@ -97,7 +99,13 @@ export class CrisisSupportComponent {
   closeForm() {
     this.showForm = false;
     this.successMsg = '';
+    this.errorMsg = '';
     this.submitted = false;
+  }
+  
+  closePopup() {
+    this.showPopup = false;
+    this.popupData = null;
   }
 
   toggleCrisisType(optionValue: string) {
