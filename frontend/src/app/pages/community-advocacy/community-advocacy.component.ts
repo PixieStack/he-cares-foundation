@@ -239,27 +239,57 @@ export class CommunityAdvocacyComponent {
 
   onSubmit() {
     this.submitted = true;
+    this.errorMsg = '';
     if (this.advocacyForm.invalid) return;
 
-    switch (this.formType) {
-      case 'support':
-        this.successMsg = 'Thank you! Our advocacy team will contact you soon.';
-        break;
-      case 'advocate':
-        this.successMsg = 'Thank you for applying to become a Male Advocate!';
-        break;
-      case 'nominate':
-        this.successMsg =
-          'Thank you for your nomination. We celebrate heroes together!';
-        break;
+    this.loading = true;
+    
+    const formData = new FormData();
+    formData.append('form_type', this.formType);
+    
+    if (this.formType === 'support') {
+      formData.append('name', this.advocacyForm.get('name')?.value);
+      formData.append('contact', this.advocacyForm.get('contact')?.value);
+      formData.append('email', this.advocacyForm.get('email')?.value);
+      formData.append('support_type', this.advocacyForm.get('support_type')?.value || '');
+      formData.append('reason', this.advocacyForm.get('reason')?.value || '');
+    } else if (this.formType === 'advocate') {
+      formData.append('name', this.advocacyForm.get('name')?.value);
+      formData.append('contact', this.advocacyForm.get('contact')?.value);
+      formData.append('email', this.advocacyForm.get('email')?.value);
+      formData.append('motivation', this.advocacyForm.get('motivation')?.value || '');
+      formData.append('skills', this.advocacyForm.get('skills')?.value || '');
+    } else { // nominate
+      formData.append('your_name', this.advocacyForm.get('your_name')?.value);
+      formData.append('your_contact', this.advocacyForm.get('your_contact')?.value);
+      formData.append('nominee_name', this.advocacyForm.get('nominee_name')?.value);
+      formData.append('nominee_contact', this.advocacyForm.get('nominee_contact')?.value);
+      formData.append('reason', this.advocacyForm.get('reason')?.value || '');
     }
-    setTimeout(() => {
-      this.showForm = false;
-      this.advocacyForm.reset();
-      this.uploadedFiles = [];
-      this.successMsg = '';
-      this.submitted = false;
-    }, 2500);
+    
+    this.uploadedFiles.forEach((file) => {
+      formData.append('files', file, file.name);
+    });
+
+    this.http.post<any>('/api/forms/community-advocacy', formData).subscribe({
+      next: (res) => {
+        this.popupData = {
+          reference: res.reference,
+          formType: this.formType,
+          ...this.advocacyForm.value,
+        };
+        this.showPopup = true;
+        this.showForm = false;
+        this.advocacyForm.reset();
+        this.uploadedFiles = [];
+        this.submitted = false;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.errorMsg = err?.error?.detail || 'An error occurred. Please try again later.';
+        this.loading = false;
+      }
+    });
   }
 
   toggleFAQ(index: number): void {
