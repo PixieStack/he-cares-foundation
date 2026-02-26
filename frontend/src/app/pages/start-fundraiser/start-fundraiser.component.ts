@@ -84,7 +84,7 @@ export class StartFundraiserComponent {
     },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.fundraiserForm = this.buildForm();
   }
 
