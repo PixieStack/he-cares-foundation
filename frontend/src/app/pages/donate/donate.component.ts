@@ -18,7 +18,13 @@ export class DonateComponent {
   showPopup = false;
   popupData: any = null;
 
-  donation = {
+  donation: {
+    amount: number | null;
+    name: string;
+    card: string;
+    expiry: string;
+    cvc: string;
+  } = {
     amount: null,
     name: '',
     card: '',
