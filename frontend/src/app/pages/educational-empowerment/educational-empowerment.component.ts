@@ -6,11 +6,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-educational-empowerment',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './educational-empowerment.component.html',
   styleUrls: ['./educational-empowerment.component.scss'],
 })
@@ -20,8 +21,14 @@ export class EducationalEmpowermentComponent {
   empowermentForm: FormGroup;
   submitted = false;
   successMsg = '';
+  errorMsg = '';
+  loading = false;
   uploadedFiles: File[] = [];
   faqOpen = -1;
+  
+  // Popup state
+  showPopup = false;
+  popupData: any = null;
 
   programOptions = [
     { label: 'Sanitary Pad Drive', value: 'sanitary_pad' },
