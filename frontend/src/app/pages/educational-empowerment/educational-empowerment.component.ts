@@ -167,24 +167,50 @@ export class EducationalEmpowermentComponent {
 
   onSubmit() {
     this.submitted = true;
+    this.errorMsg = '';
     if (this.empowermentForm.invalid) return;
 
-    switch (this.formType) {
-      case 'support':
-        this.successMsg =
-          'Thank you! Our team will contact you soon to discuss your support or application needs.';
-        break;
-      case 'suggest':
-        this.successMsg = 'Thank you for your program suggestion!';
-        break;
+    this.loading = true;
+    
+    const formData = new FormData();
+    formData.append('form_type', this.formType);
+    formData.append('name', this.empowermentForm.get('name')?.value);
+    formData.append('contact', this.empowermentForm.get('contact')?.value);
+    formData.append('email', this.empowermentForm.get('email')?.value);
+    
+    if (this.formType === 'support') {
+      const programs = this.empowermentForm.get('program')?.value || [];
+      programs.forEach((p: string) => formData.append('program', p));
+      formData.append('need_details', this.empowermentForm.get('need_details')?.value || '');
+    } else {
+      formData.append('title', this.empowermentForm.get('title')?.value || '');
+      formData.append('description', this.empowermentForm.get('description')?.value || '');
+      formData.append('beneficiaries', this.empowermentForm.get('beneficiaries')?.value || '');
     }
-    setTimeout(() => {
-      this.showForm = false;
-      this.empowermentForm.reset();
-      this.uploadedFiles = [];
-      this.successMsg = '';
-      this.submitted = false;
-    }, 2500);
+    
+    this.uploadedFiles.forEach((file) => {
+      formData.append('files', file, file.name);
+    });
+
+    this.http.post<any>('/api/forms/educational-empowerment', formData).subscribe({
+      next: (res) => {
+        this.popupData = {
+          reference: res.reference,
+          formType: this.formType,
+          ...this.empowermentForm.value,
+        };
+        this.showPopup = true;
+        this.showForm = false;
+        this.empowermentForm.reset();
+        this.uploadedFiles = [];
+        this.submitted = false;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.errorMsg = err?.error?.detail || 'An error occurred. Please try again later.';
+        this.loading = false;
+      }
+    });
   }
 
   toggleFAQ(idx: number) {
