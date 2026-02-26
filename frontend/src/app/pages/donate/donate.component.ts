@@ -73,7 +73,7 @@ export class DonateComponent {
     this.loading = true;
     
     const formData = new FormData();
-    formData.append('amount', this.donation.amount.toString());
+    formData.append('amount', String(this.donation.amount));
     formData.append('name', this.donation.name);
     formData.append('card', this.donation.card);
     formData.append('expiry', this.donation.expiry);
