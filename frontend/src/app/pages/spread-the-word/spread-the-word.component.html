@@ -63,7 +63,7 @@
         <div class="card-fields">
           <div class="form-group">
             <label>Your Name *</label>
-            <input formControlName="name" type="text" required />
+            <input formControlName="name" type="text" required data-testid="story-name-input" />
           </div>
           <div class="form-group">
             <label>Your Story (why you care) *</label>
@@ -72,6 +72,7 @@
               rows="3"
               maxlength="600"
               required
+              data-testid="story-text-input"
             ></textarea>
           </div>
           <ul class="bullet-list">
@@ -79,11 +80,12 @@
             <li>Your voice matters</li>
             <li>Share as text or as a video</li>
           </ul>
-          <div class="success-msg" *ngIf="storySuccess">{{ storySuccess }}</div>
+          <div class="error-msg" *ngIf="storyError" style="color:#ef4444;margin-top:10px;">{{ storyError }}</div>
         </div>
         <div class="card-actions">
-          <button class="btn-main" type="submit">
-            <i class="fas fa-bullhorn"></i> Share Story
+          <button class="btn-main" type="submit" [disabled]="storyLoading" data-testid="story-submit-btn">
+            <i class="fas" [ngClass]="storyLoading ? 'fa-spinner fa-spin' : 'fa-bullhorn'"></i> 
+            {{ storyLoading ? 'Sharing...' : 'Share Story' }}
           </button>
         </div>
       </form>
