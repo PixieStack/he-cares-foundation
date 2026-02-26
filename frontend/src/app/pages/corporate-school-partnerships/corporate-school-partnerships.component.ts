@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-corporate-school-partnerships',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './corporate-school-partnerships.component.html',
   styleUrls: ['./corporate-school-partnerships.component.scss'],
 })
 export class CorporateSchoolPartnershipsComponent {
   selectedTab: 'partner' | 'nominate' = 'partner';
+  loading = false;
+  
+  // Popup state
+  showPopup = false;
+  popupData: any = null;
 
   partnership = {
     orgType: '',
@@ -43,25 +49,81 @@ export class CorporateSchoolPartnershipsComponent {
     {
       name: 'Edenox',
       logo: 'assets/images/EDENOX.png',
-      desc: 'Tech & Innovation Partner — powering He Cares Foundation’s digital presence and providing free web development, support & maintanace, and youth coding education.',
+      desc: 'Tech & Innovation Partner — powering He Cares Foundation's digital presence and providing free web development, support & maintanace, and youth coding education.',
       link: 'https://edenox.com',
     },
   ];
 
+  constructor(private http: HttpClient) {}
+
   processPartnership(f: NgForm) {
     if (f.valid) {
-      this.partnershipSuccess = "Thank you! We'll reach out to you soon.";
-      f.resetForm();
-      setTimeout(() => (this.partnershipSuccess = ''), 4000);
+      this.loading = true;
+      
+      const formData = new FormData();
+      formData.append('form_type', 'partner');
+      formData.append('org_type', this.partnership.orgType);
+      formData.append('org_name', this.partnership.orgName);
+      formData.append('contact_name', this.partnership.contactName);
+      formData.append('contact_email', this.partnership.contactEmail);
+      formData.append('phone', this.partnership.phone);
+      formData.append('interest', this.partnership.interest);
+      formData.append('message', this.partnership.message);
+
+      this.http.post<any>('/api/forms/corporate-partnership', formData).subscribe({
+        next: (res) => {
+          this.popupData = {
+            type: 'partner',
+            reference: res.reference,
+            ...this.partnership,
+          };
+          this.showPopup = true;
+          f.resetForm();
+          this.loading = false;
+        },
+        error: (err) => {
+          this.partnershipSuccess = err?.error?.detail || 'An error occurred. Please try again.';
+          this.loading = false;
+          setTimeout(() => (this.partnershipSuccess = ''), 4000);
+        }
+      });
     }
   }
 
   processNomination(f: NgForm) {
     if (f.valid) {
-      this.nominateSuccess =
-        'Nomination sent! Thank you for helping us grow our mission.';
-      f.resetForm();
-      setTimeout(() => (this.nominateSuccess = ''), 4000);
+      this.loading = true;
+      
+      const formData = new FormData();
+      formData.append('form_type', 'nominate');
+      formData.append('your_name', this.nominate.yourName);
+      formData.append('nominate_org_type', this.nominate.orgType);
+      formData.append('nominate_org_name', this.nominate.orgName);
+      formData.append('nominate_contact_email', this.nominate.contactEmail);
+      formData.append('nominate_message', this.nominate.message);
+
+      this.http.post<any>('/api/forms/corporate-partnership', formData).subscribe({
+        next: (res) => {
+          this.popupData = {
+            type: 'nominate',
+            reference: res.reference,
+            ...this.nominate,
+          };
+          this.showPopup = true;
+          f.resetForm();
+          this.loading = false;
+        },
+        error: (err) => {
+          this.nominateSuccess = err?.error?.detail || 'An error occurred. Please try again.';
+          this.loading = false;
+          setTimeout(() => (this.nominateSuccess = ''), 4000);
+        }
+      });
     }
+  }
+  
+  closePopup() {
+    this.showPopup = false;
+    this.popupData = null;
   }
 }
