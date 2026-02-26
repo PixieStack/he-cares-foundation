@@ -66,6 +66,8 @@ To protect and uplift vulnerable women and children by providing access to safet
 - `POST /api/forms/crisis-support` - Crisis support requests
 - `POST /api/forms/start-fundraiser` - Fundraiser registration
 - `POST /api/forms/corporate-partnership` - Partnership inquiries
+- `POST /api/forms/spread-the-word/story` - Share your story (NEW)
+- `POST /api/forms/spread-the-word/challenge` - Challenge a friend (NEW)
 
 ---
 
