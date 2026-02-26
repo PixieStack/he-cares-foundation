@@ -189,18 +189,47 @@ export class StartFundraiserComponent {
 
   onSubmit() {
     this.submitted = true;
+    this.errorMsg = '';
     if (this.fundraiserForm.invalid) return;
 
-    this.successMsg =
-      'Thank you for registering your fundraiser or drive! Our team will review your application and contact you with next steps and official banking details.';
-    setTimeout(() => {
-      this.showForm = false;
-      this.fundraiserForm.reset();
-      this.uploadedFiles = [];
-      this.successMsg = '';
-      this.submitted = false;
-      this.step = 1;
-    }, 2500);
+    this.loading = true;
+    
+    const formData = new FormData();
+    formData.append('organizer_name', this.fundraiserForm.get('organizerName')?.value);
+    formData.append('contact', this.fundraiserForm.get('contact')?.value);
+    formData.append('email', this.fundraiserForm.get('email')?.value);
+    formData.append('location', this.fundraiserForm.get('location')?.value);
+    formData.append('event_type', this.fundraiserForm.get('eventType')?.value);
+    formData.append('event_title', this.fundraiserForm.get('eventTitle')?.value);
+    formData.append('event_date', this.fundraiserForm.get('eventDate')?.value);
+    formData.append('event_desc', this.fundraiserForm.get('eventDesc')?.value);
+    
+    const supportNeeded = this.fundraiserForm.get('supportNeeded')?.value || [];
+    supportNeeded.forEach((s: string) => formData.append('support_needed', s));
+    
+    this.uploadedFiles.forEach((file) => {
+      formData.append('files', file, file.name);
+    });
+
+    this.http.post<any>('/api/forms/start-fundraiser', formData).subscribe({
+      next: (res) => {
+        this.popupData = {
+          reference: res.reference,
+          ...this.fundraiserForm.value,
+        };
+        this.showPopup = true;
+        this.showForm = false;
+        this.fundraiserForm.reset();
+        this.uploadedFiles = [];
+        this.submitted = false;
+        this.loading = false;
+        this.step = 1;
+      },
+      error: (err) => {
+        this.errorMsg = err?.error?.detail || 'An error occurred. Please try again later.';
+        this.loading = false;
+      }
+    });
   }
 
   toggleFAQ(idx: number) {
