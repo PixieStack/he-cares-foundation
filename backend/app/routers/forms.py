@@ -10,6 +10,68 @@ router = APIRouter(
 )
 
 
+@router.post("/forms/spread-the-word/story")
+async def spread_the_word_story(
+    background_tasks: BackgroundTasks,
+    name: str = Form(...),
+    text: str = Form(...)
+):
+    """Submit a story for Spread the Word"""
+    reference = f"STY-{uuid.uuid4().hex[:10].upper()}"
+    
+    form_data = {
+        "story_text": text,
+    }
+    
+    background_tasks.add_task(
+        send_generic_form_email,
+        form_source="Spread the Word Page (Share Your Story)",
+        form_data=form_data,
+        user_email=f"story-{reference}@hecaresfoundation.org",  # No email provided
+        user_name=name,
+        reference=reference,
+        attachments=None
+    )
+    
+    return {
+        "success": True,
+        "message": "Story shared! Thank you for spreading the word.",
+        "reference": reference
+    }
+
+
+@router.post("/forms/spread-the-word/challenge")
+async def spread_the_word_challenge(
+    background_tasks: BackgroundTasks,
+    your_name: str = Form(...),
+    friend_email: str = Form(...),
+    message: Optional[str] = Form(None)
+):
+    """Challenge a friend to join the movement"""
+    reference = f"CHG-{uuid.uuid4().hex[:10].upper()}"
+    
+    form_data = {
+        "friend_email": friend_email,
+        "personal_message": message or "No personal message added",
+    }
+    
+    background_tasks.add_task(
+        send_generic_form_email,
+        form_source="Spread the Word Page (Challenge a Friend)",
+        form_data=form_data,
+        user_email=friend_email,
+        user_name=your_name,
+        reference=reference,
+        attachments=None
+    )
+    
+    return {
+        "success": True,
+        "message": "Challenge sent! Your friend will receive an invitation.",
+        "reference": reference
+    }
+
+
 @router.post("/forms/educational-empowerment")
 async def educational_empowerment_form(
     background_tasks: BackgroundTasks,
