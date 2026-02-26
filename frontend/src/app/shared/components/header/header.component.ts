@@ -32,7 +32,17 @@ export class HeaderComponent {
       ],
       isOpen: false,
     },
-    { label: 'Join Movement', route: '/get-involved' },
+    {
+      label: 'Join Movement',
+      route: '/get-involved',
+      submenu: [
+        { label: 'Become a Volunteer', route: '/become-volunteer' },
+        { label: 'Start a Fundraiser', route: '/start-fundraiser' },
+        { label: 'Corporate & School Partnerships', route: '/partnerships/corporate-school-partnerships' },
+        { label: 'Spread the Word', route: '/spread-the-word' },
+      ],
+      isOpen: false,
+    },
     { label: 'Our Impact', route: '/impact' },
     { label: 'Contact', route: '/contact' },
   ];
