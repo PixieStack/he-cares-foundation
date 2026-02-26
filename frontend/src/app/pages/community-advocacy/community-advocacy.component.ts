@@ -171,7 +171,7 @@ export class CommunityAdvocacyComponent {
     },
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.advocacyForm = this.buildForm('support');
   }
 
