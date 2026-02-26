@@ -16,7 +16,8 @@ To protect and uplift vulnerable women and children by providing access to safet
 - **Email Service**: Brevo SMTP (smtp-relay.brevo.com)
 
 ## Contact Information
-- **Email**: Godfreymalindisa@gmail.com
+- **Test Email**: thembinkosithwala16@gmail.com (temporary for testing)
+- **Production Email**: Godfreymalindisa@gmail.com
 - **Phone**: 0681263127 (068 126 3127)
 - **Location**: South Africa
 
