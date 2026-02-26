@@ -49,7 +49,7 @@ export class CorporateSchoolPartnershipsComponent {
     {
       name: 'Edenox',
       logo: 'assets/images/EDENOX.png',
-      desc: 'Tech & Innovation Partner — powering He Cares Foundation's digital presence and providing free web development, support & maintanace, and youth coding education.',
+      desc: "Tech & Innovation Partner — powering He Cares Foundation's digital presence and providing free web development, support & maintanance, and youth coding education.",
       link: 'https://edenox.com',
     },
   ];
