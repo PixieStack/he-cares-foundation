@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 type Faq = {
   question: string;
@@ -16,7 +17,7 @@ type Faq = {
 @Component({
   selector: 'app-start-fundraiser',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './start-fundraiser.component.html',
   styleUrls: ['./start-fundraiser.component.scss'],
 })
@@ -25,8 +26,14 @@ export class StartFundraiserComponent {
   fundraiserForm: FormGroup;
   submitted = false;
   successMsg = '';
+  errorMsg = '';
+  loading = false;
   uploadedFiles: File[] = [];
   step = 1;
+  
+  // Popup state
+  showPopup = false;
+  popupData: any = null;
 
   eventTypes = [
     'Sanitary Pad Drive',
