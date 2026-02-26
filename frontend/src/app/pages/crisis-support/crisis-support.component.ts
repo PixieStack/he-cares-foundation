@@ -6,11 +6,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-crisis-support',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './crisis-support.component.html',
   styleUrls: ['./crisis-support.component.scss'],
 })
@@ -18,10 +19,17 @@ export class CrisisSupportComponent {
   supportForm: FormGroup;
   submitted = false;
   successMsg = '';
+  errorMsg = '';
+  loading = false;
   showForm = false;
   uploading = false;
   uploadedFiles: File[] = [];
   isReferral = false;
+  
+  // Popup state
+  showPopup = false;
+  popupData: any = null;
+  
   crisisOptions = [
     { label: 'Access to a Social Worker', value: 'socialWorker' },
     { label: 'Legal Assistance Referrals', value: 'legalAssistance' },
