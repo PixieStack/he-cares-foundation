@@ -319,6 +319,59 @@ class HeCaresTester:
             self.log_test("Corporate Partnership Form API", False, str(e))
             return False
     
+    def test_spread_word_story_form(self):
+        """Test spread the word story form API"""
+        try:
+            form_data = {
+                'name': 'Test Story Teller',
+                'text': 'This is my inspiring story about how HE CARES Foundation helped our community. They provided educational resources and support that changed many lives.'
+            }
+            
+            response = requests.post(f"{self.base_url}/api/forms/spread-the-word/story", 
+                                   data=form_data, timeout=30)
+            
+            success = response.status_code == 200
+            if success:
+                data = response.json()
+                success = "reference" in data and "success" in data
+                self.log_test("Spread the Word Story Form API", success, 
+                             f"Reference: {data.get('reference', 'None')}")
+            else:
+                self.log_test("Spread the Word Story Form API", success, 
+                             f"Status: {response.status_code}, Response: {response.text}")
+            return success
+            
+        except Exception as e:
+            self.log_test("Spread the Word Story Form API", False, str(e))
+            return False
+    
+    def test_spread_word_challenge_form(self):
+        """Test spread the word challenge form API"""
+        try:
+            form_data = {
+                'your_name': 'Test Challenger',
+                'friend_email': 'friend@example.com',
+                'message': 'Hey friend! You should check out this amazing foundation that is making a real difference in our community.'
+            }
+            
+            response = requests.post(f"{self.base_url}/api/forms/spread-the-word/challenge", 
+                                   data=form_data, timeout=30)
+            
+            success = response.status_code == 200
+            if success:
+                data = response.json()
+                success = "reference" in data and "success" in data
+                self.log_test("Spread the Word Challenge Form API", success, 
+                             f"Reference: {data.get('reference', 'None')}")
+            else:
+                self.log_test("Spread the Word Challenge Form API", success, 
+                             f"Status: {response.status_code}, Response: {response.text}")
+            return success
+            
+        except Exception as e:
+            self.log_test("Spread the Word Challenge Form API", False, str(e))
+            return False
+    
     def print_summary(self):
         """Print test summary"""
         print(f"\n{'='*60}")
