@@ -115,7 +115,9 @@ export class EducationalEmpowermentComponent {
     this.empowermentForm = this.buildForm(type);
     this.uploadedFiles = [];
     this.successMsg = '';
+    this.errorMsg = '';
     this.submitted = false;
+    this.loading = false;
     setTimeout(() => {
       const el = document.querySelector('.modal-form');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -124,6 +126,11 @@ export class EducationalEmpowermentComponent {
 
   closeForm() {
     this.showForm = false;
+  }
+  
+  closePopup() {
+    this.showPopup = false;
+    this.popupData = null;
   }
 
   toggleProgram(value: string) {
