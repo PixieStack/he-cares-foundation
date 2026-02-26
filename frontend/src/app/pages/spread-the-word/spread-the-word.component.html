@@ -12,8 +12,8 @@
         </p>
         <p>
           <em
-            >“It’s how a man governs his kingdom — with his surroundings being
-            his kingdom.”</em
+            >"It's how a man governs his kingdom — with his surroundings being
+            his kingdom."</em
           >
         </p>
         <ul>
@@ -23,7 +23,7 @@
             featured.
           </li>
           <li>
-            Make It Yours: Create a custom “I Support” poster with your name or
+            Make It Yours: Create a custom "I Support" poster with your name or
             group.
           </li>
           <li>
@@ -48,8 +48,7 @@
   </div>
 
   <div class="card-grid">
-    <!-- CARD 1: Impact Pin -->
-    <!-- CARD 4: Share Your Story -->
+    <!-- CARD 1: Share Your Story -->
     <section class="spread-card">
       <div class="form-header">
         <i class="fas fa-quote-left"></i>
@@ -90,7 +89,8 @@
         </div>
       </form>
     </section>
-    <!-- CARD 5: Challenge a Friend -->
+    
+    <!-- CARD 2: Challenge a Friend -->
     <section class="spread-card">
       <div class="form-header">
         <i class="fas fa-paper-plane"></i>
@@ -104,11 +104,11 @@
         <div class="card-fields">
           <div class="form-group">
             <label>Your Name *</label>
-            <input formControlName="yourName" type="text" required />
+            <input formControlName="yourName" type="text" required data-testid="challenge-name-input" />
           </div>
           <div class="form-group">
-            <label>Friend’s Email *</label>
-            <input formControlName="friendEmail" type="email" required />
+            <label>Friend's Email *</label>
+            <input formControlName="friendEmail" type="email" required data-testid="challenge-email-input" />
           </div>
           <div class="form-group">
             <label>Add a Message (optional)</label>
@@ -116,6 +116,7 @@
               formControlName="message"
               rows="2"
               placeholder="Hey! I just joined the He Cares Movement and thought of you. Join me and let's make a difference!"
+              data-testid="challenge-message-input"
             ></textarea>
           </div>
           <ul class="bullet-list">
@@ -123,18 +124,20 @@
             <li>Keep the movement growing</li>
             <li>Share via email or DM</li>
           </ul>
-          <div class="success-msg" *ngIf="challengeSuccess">
-            {{ challengeSuccess }}
+          <div class="error-msg" *ngIf="challengeError" style="color:#ef4444;margin-top:10px;">
+            {{ challengeError }}
           </div>
         </div>
         <div class="card-actions">
-          <button class="btn-main" type="submit">
-            <i class="fas fa-paper-plane"></i> Send Challenge
+          <button class="btn-main" type="submit" [disabled]="challengeLoading" data-testid="challenge-submit-btn">
+            <i class="fas" [ngClass]="challengeLoading ? 'fa-spinner fa-spin' : 'fa-paper-plane'"></i> 
+            {{ challengeLoading ? 'Sending...' : 'Send Challenge' }}
           </button>
         </div>
       </form>
     </section>
-    <!-- CARD 6: Social Share -->
+    
+    <!-- CARD 3: Social Share -->
     <section class="spread-card">
       <div class="form-header">
         <i class="fas fa-share-alt"></i>
@@ -187,7 +190,7 @@
         <div class="sample-caption">
           <strong>Sample Caption:</strong>
           <span>
-            I’m supporting the HE CARES MOVEMENT — a movement that stands for
+            I'm supporting the HE CARES MOVEMENT — a movement that stands for
             our Women &amp; Children. Men, be visible. Be part of the change.
             #HeCaresMovement #MenWhoCare
           </span>
@@ -197,5 +200,41 @@
         <!-- Empty for alignment -->
       </div>
     </section>
+  </div>
+  
+  <!-- Success Popup for Story -->
+  <div class="popup-overlay" *ngIf="showStoryPopup" (click)="closeStoryPopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <button class="popup-close" (click)="closeStoryPopup()" data-testid="story-popup-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="popup-icon success">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Story Shared!</h3>
+      <p>Thank you for spreading the word and inspiring others!</p>
+      <div class="popup-ref" *ngIf="storyPopupData?.reference">
+        Reference: <strong>{{ storyPopupData.reference }}</strong>
+      </div>
+      <button class="btn-main" (click)="closeStoryPopup()">Close</button>
+    </div>
+  </div>
+  
+  <!-- Success Popup for Challenge -->
+  <div class="popup-overlay" *ngIf="showChallengePopup" (click)="closeChallengePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <button class="popup-close" (click)="closeChallengePopup()" data-testid="challenge-popup-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="popup-icon success">
+        <i class="fas fa-paper-plane"></i>
+      </div>
+      <h3>Challenge Sent!</h3>
+      <p>Your friend will receive an invitation to join the movement!</p>
+      <div class="popup-ref" *ngIf="challengePopupData?.reference">
+        Reference: <strong>{{ challengePopupData.reference }}</strong>
+      </div>
+      <button class="btn-main" (click)="closeChallengePopup()">Close</button>
+    </div>
   </div>
 </div>
