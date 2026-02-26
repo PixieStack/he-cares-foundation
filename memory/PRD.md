@@ -47,6 +47,8 @@ To protect and uplift vulnerable women and children by providing access to safet
 7. **Crisis Support** (`/crisis-support`) - Working
 8. **Start Fundraiser** (`/start-fundraiser`) - Working
 9. **Corporate Partnership** (`/corporate-school-partnerships`) - Working
+10. **Spread the Word - Share Story** (`/spread-the-word`) - Working (NEW)
+11. **Spread the Word - Challenge Friend** (`/spread-the-word`) - Working (NEW)
 
 ### Contact Information Updated
 - [x] Header emergency number: 068 126 3127
