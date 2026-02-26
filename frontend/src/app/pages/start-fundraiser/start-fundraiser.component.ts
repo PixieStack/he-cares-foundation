@@ -114,6 +114,8 @@ export class StartFundraiserComponent {
     this.uploadedFiles = [];
     this.submitted = false;
     this.successMsg = '';
+    this.errorMsg = '';
+    this.loading = false;
     setTimeout(() => {
       const el = document.querySelector('.modal-form');
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -122,6 +124,11 @@ export class StartFundraiserComponent {
 
   closeForm() {
     this.showForm = false;
+  }
+  
+  closePopup() {
+    this.showPopup = false;
+    this.popupData = null;
   }
 
   nextStep() {
