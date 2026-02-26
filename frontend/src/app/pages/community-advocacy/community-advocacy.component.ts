@@ -6,11 +6,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-community-advocacy',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './community-advocacy.component.html',
   styleUrls: ['./community-advocacy.component.scss'],
 })
@@ -20,7 +21,13 @@ export class CommunityAdvocacyComponent {
   advocacyForm: FormGroup;
   submitted = false;
   successMsg = '';
+  errorMsg = '';
+  loading = false;
   uploadedFiles: File[] = [];
+  
+  // Popup state
+  showPopup = false;
+  popupData: any = null;
 
   advocacyFeatures = [
     {
