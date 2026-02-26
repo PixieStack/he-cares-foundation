@@ -129,18 +129,47 @@ export class CrisisSupportComponent {
 
   onSubmit() {
     this.submitted = true;
+    this.errorMsg = '';
     if (this.supportForm.valid) {
-      this.successMsg =
-        'Thank you for reaching out. Our team will contact you soon with support and referrals.';
-      this.supportForm.reset({
-        referralType: this.isReferral ? 'professional' : 'self',
-        crisisType: [],
+      this.loading = true;
+      
+      const formData = new FormData();
+      formData.append('name', this.supportForm.get('name')?.value);
+      formData.append('contact', this.supportForm.get('contact')?.value);
+      formData.append('email', this.supportForm.get('email')?.value);
+      
+      const crisisTypes = this.supportForm.get('crisisType')?.value || [];
+      crisisTypes.forEach((ct: string) => formData.append('crisis_type', ct));
+      
+      formData.append('message', this.supportForm.get('message')?.value || '');
+      formData.append('referral_type', this.supportForm.get('referralType')?.value || 'self');
+      formData.append('referred_by', this.supportForm.get('referredBy')?.value || '');
+      
+      this.uploadedFiles.forEach((file) => {
+        formData.append('files', file, file.name);
       });
-      this.uploadedFiles = [];
-      setTimeout(() => {
-        this.showForm = false;
-        this.successMsg = '';
-      }, 3000);
+
+      this.http.post<any>('/api/forms/crisis-support', formData).subscribe({
+        next: (res) => {
+          this.popupData = {
+            reference: res.reference,
+            ...this.supportForm.value,
+          };
+          this.showPopup = true;
+          this.showForm = false;
+          this.supportForm.reset({
+            referralType: this.isReferral ? 'professional' : 'self',
+            crisisType: [],
+          });
+          this.uploadedFiles = [];
+          this.submitted = false;
+          this.loading = false;
+        },
+        error: (err) => {
+          this.errorMsg = err?.error?.detail || 'An error occurred. Please try again later.';
+          this.loading = false;
+        }
+      });
     }
   }
 }
