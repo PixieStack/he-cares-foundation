@@ -389,3 +389,326 @@ select {
   outline-offset: 2px;
   border-radius: $border-radius-sm;
 }
+
+// ============================================
+// RESPONSIVE UTILITIES
+// ============================================
+
+// Responsive Grid System
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.75rem;
+  
+  > * {
+    padding: 0 0.75rem;
+  }
+}
+
+// Responsive flex utilities
+.d-flex {
+  display: flex !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.gap-1 { gap: 0.5rem !important; }
+.gap-2 { gap: 1rem !important; }
+.gap-3 { gap: 1.5rem !important; }
+.gap-4 { gap: 2rem !important; }
+
+// Responsive spacing
+.p-0 { padding: 0 !important; }
+.p-1 { padding: 0.5rem !important; }
+.p-2 { padding: 1rem !important; }
+.p-3 { padding: 1.5rem !important; }
+.p-4 { padding: 2rem !important; }
+
+.m-0 { margin: 0 !important; }
+.m-auto { margin: auto !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+// Responsive display utilities
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-inline-block { display: inline-block !important; }
+
+@media (max-width: 992px) {
+  .d-lg-none { display: none !important; }
+  .d-lg-block { display: block !important; }
+}
+
+@media (max-width: 768px) {
+  .d-md-none { display: none !important; }
+  .d-md-block { display: block !important; }
+  
+  .flex-md-column {
+    flex-direction: column !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .d-sm-none { display: none !important; }
+  .d-sm-block { display: block !important; }
+  
+  .flex-sm-column {
+    flex-direction: column !important;
+  }
+}
+
+// Responsive width utilities
+.w-100 { width: 100% !important; }
+.w-auto { width: auto !important; }
+
+// Responsive overflow
+.overflow-hidden { overflow: hidden !important; }
+.overflow-auto { overflow: auto !important; }
+.overflow-x-auto { overflow-x: auto !important; }
+.overflow-y-auto { overflow-y: auto !important; }
+
+// ============================================
+// RESPONSIVE BUTTON FIXES
+// ============================================
+.btn {
+  @media (max-width: 576px) {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    
+    &.btn-large {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// Button group responsive
+.btn-group,
+.button-group,
+.cta-buttons,
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  @media (max-width: 576px) {
+    flex-direction: column;
+    width: 100%;
+    
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE FORM ELEMENTS
+// ============================================
+input,
+textarea,
+select {
+  font-family: $font-body;
+  font-size: $font-size-base;
+  padding: $input-padding-y $input-padding-x;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: all $transition-speed-normal $transition-ease;
+  width: 100%;
+  max-width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $input-border-focus-color;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+  }
+  
+  @media (max-width: 576px) {
+    padding: 0.65rem 0.85rem;
+    font-size: 16px; // Prevents zoom on iOS
+  }
+}
+
+// Form layout responsive
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: $hcf-text-dark;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  @media (max-width: 576px) {
+    flex-direction: column;
+    
+    .form-group {
+      min-width: 100%;
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE CARDS
+// ============================================
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================
+// RESPONSIVE HERO SECTIONS
+// ============================================
+.hero-section,
+.header-hero {
+  @media (max-width: 992px) {
+    padding: 2rem 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    
+    .hero-content {
+      order: 2;
+    }
+    
+    .hero-art,
+    .hero-image {
+      order: 1;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE TABLES
+// ============================================
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  table {
+    min-width: 600px;
+  }
+}
+
+// ============================================
+// POPUP/MODAL RESPONSIVE
+// ============================================
+.popup-overlay,
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  
+  .popup-content,
+  .modal-content {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    
+    @media (max-width: 576px) {
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin: 0.5rem;
+    }
+  }
+  
+  .popup-close,
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    
+    &:hover {
+      color: #1f2937;
+    }
+  }
+  
+  .popup-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    
+    &.success {
+      background: #d1fae5;
+      color: #10b981;
+    }
+    
+    &.error {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+  }
+}
+
