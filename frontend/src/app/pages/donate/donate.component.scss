@@ -117,11 +117,16 @@
   display: flex;
   gap: 1.2rem;
   margin-bottom: 1.05rem;
+  flex-wrap: wrap;
 
   .input-group {
     flex: 1;
-    min-width: 0;
+    min-width: 200px;
     margin-bottom: 0;
+    
+    @media (max-width: 576px) {
+      min-width: 100%;
+    }
   }
 }
 
