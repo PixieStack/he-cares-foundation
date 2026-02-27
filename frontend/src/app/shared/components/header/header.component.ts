@@ -56,12 +56,16 @@ export class HeaderComponent {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
     if (!this.isMobileMenuOpen) {
       this.navigationItems.forEach((item) => (item.isOpen = false));
+      document.body.classList.remove('menu-open');
+    } else {
+      document.body.classList.add('menu-open');
     }
   }
 
   closeMobileMenu() {
     this.isMobileMenuOpen = false;
     this.navigationItems.forEach((item) => (item.isOpen = false));
+    document.body.classList.remove('menu-open');
   }
 
   toggleMobileDropdown(item: any) {
