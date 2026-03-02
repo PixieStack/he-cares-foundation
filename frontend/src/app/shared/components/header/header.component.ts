@@ -39,7 +39,6 @@ export class HeaderComponent {
         { label: 'Become a Volunteer', route: '/become-volunteer' },
         { label: 'Start a Fundraiser', route: '/start-fundraiser' },
         { label: 'Corporate & School Partnerships', route: '/partnerships/corporate-school-partnerships' },
-        { label: 'Spread the Word', route: '/spread-the-word' },
       ],
       isOpen: false,
     },

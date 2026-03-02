@@ -23,7 +23,7 @@ export class ContactComponent {
   showPopup = false;
   popupData: any = null;
 
-  // For storing multiple files
+  // Multiple files
   attachments: File[] = [];
 
   constructor(
@@ -36,24 +36,36 @@ export class ContactComponent {
       topic: ['', Validators.required],
       message: ['', Validators.required],
       phone: [''],
-      attachment: [null],
     });
   }
 
   onFileChange(event: any) {
     if (event.target.files && event.target.files.length > 0) {
-      this.attachments = Array.from(event.target.files);
-      this.contactForm.patchValue({
-        attachment: this.attachments.length ? this.attachments[0] : null,
+      const newFiles: File[] = Array.from(event.target.files);
+
+      newFiles.forEach((newFile) => {
+        // Avoid duplicate files by name
+        const exists = this.attachments.some(
+          (f) => f.name === newFile.name && f.size === newFile.size
+        );
+        if (!exists) {
+          this.attachments.push(newFile);
+        }
       });
+
+      // Reset input so same file can be re-added after removal
+      event.target.value = '';
     }
   }
 
   removeAttachment(index: number) {
     this.attachments.splice(index, 1);
-    this.contactForm.patchValue({
-      attachment: this.attachments.length ? this.attachments[0] : null,
-    });
+  }
+
+  formatFileSize(bytes: number): string {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   }
 
   onSubmit() {
@@ -66,42 +78,45 @@ export class ContactComponent {
     this.loading = true;
 
     const formData = new FormData();
-    Object.entries(this.contactForm.value).forEach(([key, value]) => {
-      if (key === 'attachment') return;
-      if (typeof value === 'string') {
-        formData.append(key, value);
-      }
-    });
+    const { name, email, topic, message, phone } = this.contactForm.value;
 
-    // Append all selected files
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('topic', topic);
+    formData.append('message', message);
+    if (phone) formData.append('phone', phone);
+
+    // Append ALL files
     this.attachments.forEach((file) => {
       formData.append('attachments', file, file.name);
     });
 
-    this.http
-      .post<any>('/api/contact', formData)
-      .subscribe({
-        next: (res) => {
-          // Show the popup with the details
-          this.popupData = {
-            reference: res.reference,
-            ...this.contactForm.value,
-            attachments: this.attachments.map((f) => f.name),
-          };
-          this.showPopup = true;
-          this.contactForm.reset();
-          this.attachments = [];
-          this.submitted = false;
-          this.loading = false;
-          this.successMsg = '';
-        },
-        error: (err) => {
-          this.errorMsg =
-            err?.error?.detail ||
-            'An error occurred while sending your message. Please try again later.';
-          this.loading = false;
-        },
-      });
+    this.http.post<any>('/api/contact', formData).subscribe({
+      next: (res) => {
+        this.popupData = {
+          reference: res.reference,
+          name,
+          email,
+          topic,
+          message,
+          phone,
+          attachments: this.attachments.map(
+            (f) => `${f.name} (${this.formatFileSize(f.size)})`
+          ),
+        };
+        this.showPopup = true;
+        this.contactForm.reset();
+        this.attachments = [];
+        this.submitted = false;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.errorMsg =
+          err?.error?.detail ||
+          'An error occurred while sending your message. Please try again later.';
+        this.loading = false;
+      },
+    });
   }
 
   closePopup() {

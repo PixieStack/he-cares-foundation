@@ -6,13 +6,14 @@ from email.message import EmailMessage
 # Load .env file
 load_dotenv()
 
-EMAIL_TO = os.getenv("EMAIL_TO", "Godfreymalindisa@gmail.com")
-EMAIL_FROM = os.getenv("EMAIL_FROM", "noreply@hecaresfoundation.org")
+EMAIL_TO = os.getenv("EMAIL_TO", "thembinkosithwala16@gmail.com")
+EMAIL_FROM = os.getenv("EMAIL_FROM", "thembinkosithwala16@gmail.com")
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp-relay.brevo.com")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
 FOUNDATION_PHONE = os.getenv("FOUNDATION_PHONE", "0681263127")
+
 
 def send_contact_email(
     name, email, topic, message, phone,
@@ -20,7 +21,6 @@ def send_contact_email(
     reference
 ):
     admin_msg = EmailMessage()
-    # Subject identifies form source: Contact Page
     admin_msg["Subject"] = f"[From Contact Page] {topic}: {name} - Ref: {reference}"
     admin_msg["From"] = EMAIL_FROM
     admin_msg["To"] = EMAIL_TO
@@ -33,42 +33,54 @@ def send_contact_email(
         for _, filename, _ in attachments:
             attachments_list_html += f"<li>{filename}</li>"
         attachments_list_html += "</ul>"
-        attachments_list_text = "\nAttachments:\n" + "\n".join([filename for _, filename, _ in attachments])
-    
+        attachments_list_text = "\nAttachments:\n" + "\n".join(
+            [filename for _, filename, _ in attachments]
+        )
+
     admin_body_html = f"""
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;border:1px solid #e9e9e9;padding:30px;">
-      <h2 style="color:#1e3a8a;margin-bottom:12px;">New Contact Form Submission</h2>
-      <p style="font-size:14px;color:#666;margin-bottom:16px;"><em>Submitted from: Contact Page</em></p>
-      <p style="font-size:16px;">You have received a new message through the foundation website.</p>
-      <table style="width:100%;border-collapse:collapse;font-size:15px;">
-        <tr>
-          <td style="padding:8px 0;width:140px;color:#666;">Reference:</td>
-          <td style="padding:8px 0;"><b style="font-size:17px;color:#1e3a8a;">{reference}</b></td>
-        </tr>
-        <tr>
-          <td style="padding:8px 0;color:#666;">Name:</td>
-          <td style="padding:8px 0;">{name}</td>
-        </tr>
-        <tr>
-          <td style="padding:8px 0;color:#666;">Email:</td>
-          <td style="padding:8px 0;"><a href="mailto:{email}">{email}</a></td>
-        </tr>
-        <tr>
-          <td style="padding:8px 0;color:#666;">Topic:</td>
-          <td style="padding:8px 0;">{topic}</td>
-        </tr>
-        <tr>
-          <td style="padding:8px 0;color:#666;">Phone:</td>
-          <td style="padding:8px 0;">{phone or 'N/A'}</td>
-        </tr>
-        <tr>
-          <td style="padding:8px 0;color:#666;vertical-align:top;">Message:</td>
-          <td style="padding:8px 0;white-space:pre-line;">{message}</td>
-        </tr>
-        {"<tr><td style='padding:8px 0;color:#666;vertical-align:top;'>Attachments:</td><td style='padding:8px 0;'>" + attachments_list_html + "</td></tr>" if attachments_list_html else ""}
-      </table>
-      <hr style="margin:24px 0 18px 0;border:none;border-top:1px solid #eee;">
-      <p style="color:#888;font-size:13px;">Sent via HE CARES FOUNDATION website contact form.</p>
+      <div style="background-color:#2c7a4b;padding:20px;text-align:center;border-radius:6px 6px 0 0;">
+        <h1 style="color:white;margin:0;">He Cares Foundation</h1>
+        <p style="color:#c8f5da;margin:5px 0 0;">New Contact Form Submission</p>
+      </div>
+      <div style="padding:24px;">
+        <h2 style="color:#2c7a4b;margin-bottom:12px;">New Contact Form Submission</h2>
+        <p style="font-size:14px;color:#666;margin-bottom:16px;"><em>Submitted from: Contact Page</em></p>
+        <table style="width:100%;border-collapse:collapse;font-size:15px;">
+          <tr style="background:#f8fafc;">
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;width:140px;">Reference:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;">
+              <b style="font-size:17px;color:#2c7a4b;">{reference}</b>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;">Name:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;">{name}</td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;">Email:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;">
+              <a href="mailto:{email}">{email}</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;">Topic:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;">{topic}</td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;">Phone:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;">{phone or 'N/A'}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;vertical-align:top;">Message:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;white-space:pre-line;">{message}</td>
+          </tr>
+          {"<tr style='background:#f8fafc;'><td style='padding:10px;border:1px solid #e5e7eb;font-weight:600;vertical-align:top;'>Attachments:</td><td style='padding:10px;border:1px solid #e5e7eb;'>" + attachments_list_html + "</td></tr>" if attachments_list_html else ""}
+        </table>
+      </div>
+      <div style="background:#f0f0f0;padding:12px;text-align:center;font-size:12px;color:#888;">
+        He Cares Foundation &copy; 2026 | South Africa | {FOUNDATION_PHONE}
+      </div>
     </div>
     """
 
@@ -110,49 +122,65 @@ Sent via HE CARES FOUNDATION website contact form.
     ack_msg["Reply-To"] = EMAIL_TO
 
     ack_body_html = f"""
-    <div style="font-family:Arial,sans-serif;max-width:540px;margin:auto;border:1px solid #e9e9e9;padding:28px;">
-      <p style="font-size:16px;margin-bottom:1.7em;">Dear <b>{name}</b>,</p>
-      <p style="font-size:15px;margin-bottom:1.6em;">
-        Thank you for contacting <b>HE CARES FOUNDATION</b>. We have received your inquiry and will respond to you as soon as possible.
-      </p>
-      <p style="font-size:15px;margin-bottom:0.7em;">
-        <b>Your reference number is:</b>
-        <span style="color:#1e3a8a; font-size:16px; font-weight:700;">{reference}</span>
-      </p>
-      <div style="background:#f8fafc;border-radius:7px;padding:13px 19px;margin-bottom:1.7em;border:1px solid #e3e7ee;">
-        <div style="font-size:15px;"><b>Summary of your message:</b></div>
-        <div style="font-size:15px;margin:10px 0 0 0;">
-          <b>Topic:</b> {topic}<br>
-          <b>Message:</b> <span style="white-space:pre-line;">{message}</span>
-        </div>
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:auto;border:1px solid #e9e9e9;">
+      <div style="background-color:#2c7a4b;padding:20px;text-align:center;">
+        <h1 style="color:white;margin:0;">He Cares Foundation</h1>
+        <p style="color:#c8f5da;margin:5px 0 0;">Message Received</p>
       </div>
-      <p style="font-size:15px;margin-bottom:2.1em;">
-        Please keep this reference number for future correspondence.
-      </p>
-      <p style="font-size:15px;">Sincerely,<br>HE CARES FOUNDATION Team<br>
-      <small>Contact: {FOUNDATION_PHONE}</small></p>
-      <hr style="margin:24px 0 18px 0;border:none;border-top:1px solid #eee;">
-      <p style="color:#888;font-size:13px;">
-        For urgent matters, please call us at {FOUNDATION_PHONE}.
-      </p>
+      <div style="padding:28px;">
+        <p style="font-size:16px;">Dear <b>{name}</b>,</p>
+        <p style="font-size:15px;">
+          Thank you for contacting <b>HE CARES FOUNDATION</b>. 
+          We have received your inquiry and will respond as soon as possible.
+        </p>
+        <div style="background:#f8fafc;border-radius:7px;padding:20px;margin:20px 0;border:1px solid #e3e7ee;">
+          <div style="font-size:15px;"><b>Your Reference Number:</b></div>
+          <div style="font-size:22px;color:#2c7a4b;font-weight:700;margin-top:8px;">{reference}</div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:15px;">
+          <tr style="background:#f8fafc;">
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;width:140px;">Topic:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;">{topic}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px;border:1px solid #e5e7eb;font-weight:600;vertical-align:top;">Message:</td>
+            <td style="padding:10px;border:1px solid #e5e7eb;white-space:pre-line;">{message}</td>
+          </tr>
+        </table>
+        <p style="font-size:15px;margin-top:20px;">
+          Please keep your reference number 
+          <strong style="color:#2c7a4b">{reference}</strong> 
+          for future correspondence. Our team typically responds within 2-5 business days.
+        </p>
+        <p style="font-size:15px;">
+          Warm regards,<br/>
+          <b>He Cares Foundation Team</b><br/>
+          <small>Contact: {FOUNDATION_PHONE}</small>
+        </p>
+      </div>
+      <div style="background:#f0f0f0;padding:12px;text-align:center;font-size:12px;color:#888;">
+        He Cares Foundation &copy; 2026 | South Africa<br/>
+        For urgent matters, please call us at {FOUNDATION_PHONE}
+      </div>
     </div>
     """
+
     ack_body_text = f"""Dear {name},
 
-Thank you for contacting HE CARES FOUNDATION. We have received your inquiry and will respond to you as soon as possible.
+Thank you for contacting HE CARES FOUNDATION. We have received your inquiry 
+and will respond to you as soon as possible.
 
-Your reference number is: {reference}
+Your Reference Number: {reference}
 
-Summary of your message:
-
+Summary:
 Topic: {topic}
-
 Message: {message}
 
 Please keep this reference number for future correspondence.
+Our team typically responds within 2-5 business days.
 
-Sincerely,
-HE CARES FOUNDATION Team
+Warm regards,
+He Cares Foundation Team
 Contact: {FOUNDATION_PHONE}
 
 For urgent matters, please call us at {FOUNDATION_PHONE}.

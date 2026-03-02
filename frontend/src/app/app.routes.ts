@@ -87,14 +87,6 @@ export const routes: Routes = [
     title: 'Start a Fundraiser or Drive | He Cares Foundation',
   },
   {
-    path: 'spread-the-word',
-    loadComponent: () =>
-      import('./pages/spread-the-word/spread-the-word.component').then(
-        (m) => m.SpreadTheWordComponent,
-      ),
-    title: 'Spread the Word | He Cares Foundation',
-  },
-  {
     path: 'partnerships/corporate-school-partnerships',
     loadComponent: () =>
       import(

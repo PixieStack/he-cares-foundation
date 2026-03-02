@@ -13,9 +13,8 @@
       </div>
       <div class="popup-content">
         <p>
-          Thank you, <strong>{{ popupData.name }}</strong
-          >! Your message has been sent to us. Here are the details you
-          submitted:
+          Thank you, <strong>{{ popupData.name }}</strong>!
+          Your message has been sent to us. Here are the details you submitted:
         </p>
         <table>
           <tr>
@@ -36,7 +35,7 @@
           </tr>
           <tr>
             <td><b>Phone:</b></td>
-            <td>{{ popupData.phone || "N/A" }}</td>
+            <td>{{ popupData.phone || 'N/A' }}</td>
           </tr>
           <tr>
             <td style="vertical-align: top"><b>Message:</b></td>
@@ -60,7 +59,7 @@
     </div>
   </div>
 
-  <!-- Hide form when popup is open -->
+  <!-- Contact Form -->
   <form
     *ngIf="!showPopup"
     [formGroup]="contactForm"
@@ -75,13 +74,11 @@
         formControlName="name"
         [class.invalid]="submitted && contactForm.controls['name'].invalid"
       />
-      <div
-        class="error"
-        *ngIf="submitted && contactForm.controls['name'].invalid"
-      >
+      <div class="error" *ngIf="submitted && contactForm.controls['name'].invalid">
         Name is required.
       </div>
     </div>
+
     <div class="form-row">
       <label for="email">Email<span>*</span></label>
       <input
@@ -90,13 +87,11 @@
         formControlName="email"
         [class.invalid]="submitted && contactForm.controls['email'].invalid"
       />
-      <div
-        class="error"
-        *ngIf="submitted && contactForm.controls['email'].invalid"
-      >
+      <div class="error" *ngIf="submitted && contactForm.controls['email'].invalid">
         Valid email is required.
       </div>
     </div>
+
     <div class="form-row">
       <label for="topic">Subject / Topic<span>*</span></label>
       <select
@@ -107,13 +102,11 @@
         <option value="">Select a topic</option>
         <option *ngFor="let t of topics" [value]="t">{{ t }}</option>
       </select>
-      <div
-        class="error"
-        *ngIf="submitted && contactForm.controls['topic'].invalid"
-      >
+      <div class="error" *ngIf="submitted && contactForm.controls['topic'].invalid">
         Topic is required.
       </div>
     </div>
+
     <div class="form-row">
       <label for="message">Message<span>*</span></label>
       <textarea
@@ -122,37 +115,59 @@
         formControlName="message"
         [class.invalid]="submitted && contactForm.controls['message'].invalid"
       ></textarea>
-      <div
-        class="error"
-        *ngIf="submitted && contactForm.controls['message'].invalid"
-      >
+      <div class="error" *ngIf="submitted && contactForm.controls['message'].invalid">
         Message is required.
       </div>
     </div>
+
     <div class="form-row">
       <label for="phone">Phone (optional)</label>
       <input id="phone" type="tel" formControlName="phone" />
     </div>
+
+    <!-- File Upload -->
     <div class="form-row">
-      <label for="attachment">Attachments (optional)</label>
+      <label>Attachments (optional)</label>
+
+      <!-- Drop zone / file picker -->
+      <label class="file-upload-label" for="attachment">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>Click to add files or drop them here</span>
+        <small>You can add multiple files</small>
+      </label>
       <input
         id="attachment"
         type="file"
         (change)="onFileChange($event)"
         multiple
+        class="file-input-hidden"
       />
+
+      <!-- File list -->
       <ul class="attachments-list" *ngIf="attachments.length">
         <li *ngFor="let file of attachments; let i = index">
-          {{ file.name }}
-          <span class="remove" (click)="removeAttachment(i)" title="Remove"
-            >&times;</span
-          >
+          <i class="fas fa-paperclip"></i>
+          <span class="file-name">{{ file.name }}</span>
+          <span class="file-size">{{ formatFileSize(file.size) }}</span>
+          <span
+            class="remove"
+            (click)="removeAttachment(i)"
+            title="Remove"
+          >&times;</span>
         </li>
       </ul>
+
+      <!-- File count badge -->
+      <div class="file-count" *ngIf="attachments.length">
+        {{ attachments.length }} file{{ attachments.length > 1 ? 's' : '' }} selected
+      </div>
     </div>
+
     <button type="submit" [disabled]="loading">
-      {{ loading ? "Sending..." : "Send Message" }}
+      <i class="fas fa-paper-plane"></i>
+      {{ loading ? 'Sending...' : 'Send Message' }}
     </button>
+
     <div class="form-messages">
       <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
     </div>
@@ -162,9 +177,7 @@
     <h2>Direct Contact</h2>
     <p>
       <strong>Email:</strong>
-      <a href="mailto:Godfreymalindisa@gmail.com"
-        >Godfreymalindisa&#64;gmail.com</a
-      >
+      <a href="mailto:Godfreymalindisa@gmail.com">Godfreymalindisa&#64;gmail.com</a>
     </p>
     <p><strong>Phone:</strong> <a href="tel:+27681263127">068 126 3127</a></p>
     <p><strong>Address:</strong> South Africa</p>
@@ -180,21 +193,21 @@
       ></iframe>
     </div>
     <div class="social-links">
-      <a href="https://facebook.com/" target="_blank" aria-label="Facebook"
-        ><i class="fab fa-facebook"></i
-      ></a>
-      <a href="https://twitter.com/" target="_blank" aria-label="Twitter"
-        ><i class="fab fa-twitter"></i
-      ></a>
-      <a href="https://instagram.com/" target="_blank" aria-label="Instagram"
-        ><i class="fab fa-instagram"></i
-      ></a>
-      <a href="https://tiktok.com/" target="_blank" aria-label="TikTok"
-        ><i class="fab fa-tiktok"></i
-      ></a>
-      <a href="https://wa.me/27681263127" target="_blank" aria-label="WhatsApp"
-        ><i class="fab fa-whatsapp"></i
-      ></a>
+      <a href="https://facebook.com/" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://twitter.com/" target="_blank" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://tiktok.com/" target="_blank" aria-label="TikTok">
+        <i class="fab fa-tiktok"></i>
+      </a>
+      <a href="https://wa.me/27681263127" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
     </div>
   </div>
 </section>

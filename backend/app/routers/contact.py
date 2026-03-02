@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Form, UploadFile, File, BackgroundTasks
 from typing import List, Optional
 import uuid
+from datetime import datetime
 
 from app.services.contact_email_service import send_contact_email
 
@@ -8,6 +9,11 @@ router = APIRouter(
     prefix="/api",
     tags=["contact"]
 )
+
+def generate_reference() -> str:
+    random_part = uuid.uuid4().hex[:8].upper()
+    date_part = datetime.now().strftime("%d%m%Y")
+    return f"HCF-{random_part}-{date_part}"
 
 @router.post("/contact")
 async def contact(
@@ -19,7 +25,7 @@ async def contact(
     phone: Optional[str] = Form(None),
     attachments: Optional[List[UploadFile]] = File(None)
 ):
-    reference = uuid.uuid4().hex[:8].upper()
+    reference = generate_reference()
     email_attachments = []
     if attachments:
         for file in attachments:
